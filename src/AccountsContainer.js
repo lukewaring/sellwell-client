@@ -1,27 +1,40 @@
-import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+// import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 import AccountShow from './AccountShow'
+import AccountForm from './AccountForm'
 import { Switch, Route } from 'react-router-dom'
 
 class AccountsContainer extends React.Component {
 
+    nextPath = (path) => {
+        this.props.routerProps.history.push(path);
+    }
+    
     render() {
     
         return (
             <div>
             <h2>Accounts</h2>
             
+            <Fab onClick={() => this.nextPath('/accounts/new') } color="secondary" aria-label="add">
+                <AddIcon />
+            </Fab>
+
             <Switch>
 
-            <Route exact path="/accounts" render={() => 
+            <Route path="/accounts/new" render={(routerProps) => <AccountForm routerProps={routerProps} />} />
+
+            <Route path="/accounts" render={() => 
                 <TableContainer component={Paper}>
                 <Table aria-label="simple table">
                     <TableHead>

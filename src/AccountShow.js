@@ -25,11 +25,12 @@ class AccountShow extends React.Component {
     render() {
         
         if (this.state.account) {
-            console.log(this.state.account.contacts)
+            console.log(this.state.account)
             return (
                     <div>
+
                         <h2>{this.state.account.name}</h2>
-                        <h5>Responsible Party ID: {this.state.account.user_id}</h5>
+                        <h5>Responsible Party: {this.state.account.user.name}</h5>
                         <h5>Industry: {this.state.account.industry}</h5>
                         <a rel="noopener noreferrer" target="_blank" href={this.state.account.website}><h5>Website</h5></a>
                         <h5>Notes: {this.state.account.notes}</h5>
@@ -46,26 +47,83 @@ class AccountShow extends React.Component {
                                 <TableCell align="left">Email</TableCell>
                                 <TableCell align="left">Notes</TableCell>
                             </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {this.state.account.contacts.map(contact => (
+                            </TableHead>
+                            <TableBody>
+                            {this.state.account.contacts.map(contact => (
                             <TableRow key={contact.id}>
-                <TableCell component="th" scope="row">{contact.account_id}</TableCell>
-                <TableCell align="left">{contact.name}</TableCell>
-                <TableCell align="left">{contact.title}</TableCell>
-                <TableCell align="left">{contact.phone}</TableCell>
-                <TableCell align="left">{contact.email}</TableCell>
-                <TableCell align="left">{contact.notes}</TableCell>
-                </TableRow>
-            ))}
-            </TableBody>
-        </Table>
-        </TableContainer>
+                                <TableCell component="th" scope="row">{contact.account_id}</TableCell>
+                                <TableCell align="left">{contact.name}</TableCell>
+                                <TableCell align="left">{contact.title}</TableCell>
+                                <TableCell align="left">{contact.phone}</TableCell>
+                                <TableCell align="left">{contact.email}</TableCell>
+                                <TableCell align="left">{contact.notes}</TableCell>
+                            </TableRow>
+                            ))}
+                            </TableBody>
+                        </Table>
+                        </TableContainer>
+                    
+                        <h4>Account Opportunities</h4>
+                        <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                            <TableRow>
+                                <TableCell align="left">Account Id</TableCell>
+                                <TableCell align="left">Name</TableCell>
+                                <TableCell align="left">Open Date</TableCell>
+                                <TableCell align="left">Close Date</TableCell>
+                                <TableCell align="left">Stage</TableCell>
+                                <TableCell align="left">Value</TableCell>
+                                <TableCell align="left">Priority</TableCell>
+                                <TableCell align="left">Notes</TableCell>
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {this.state.account.opportunities.map(opportunity => (
+                            <TableRow key={opportunity.id}>
+                                <TableCell component="th" scope="row">{opportunity.account_id}</TableCell>
+                                <TableCell align="left">{opportunity.name}</TableCell>
+                                <TableCell align="left">{opportunity.open_date}</TableCell>
+                                <TableCell align="left">{opportunity.close_date}</TableCell>
+                                <TableCell align="left">{opportunity.value}</TableCell>
+                                <TableCell align="left">{opportunity.stage}</TableCell>
+                                <TableCell align="left">{opportunity.priority}</TableCell>
+                                <TableCell align="left">{opportunity.notes}</TableCell>
+                            </TableRow>
+                            ))}
+                            </TableBody>
+                        </Table>
+                        </TableContainer>
+                        
+                        <h4>Account Activities</h4>
+                        <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                            <TableRow>
+                                <TableCell align="left">Opportunity Id</TableCell>
+                                <TableCell align="left">Name</TableCell>
+                                <TableCell align="left">Date</TableCell>
+                                <TableCell align="left">Notes</TableCell>
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {this.state.account.activities.map(activity => (
+                            <TableRow key={activity.id}>
+                                <TableCell component="th" scope="row">{activity.opportunity_id}</TableCell>
+                                <TableCell align="left">{activity.name}</TableCell>
+                                <TableCell align="left">{activity.date}</TableCell>
+                                <TableCell align="left">{activity.notes}</TableCell>
+                            </TableRow>
+                            ))}
+                            </TableBody>
+                        </Table>
+                        </TableContainer>
+
                     </div>
-                    )
+            )
         } else {
-             return null
-         }
+            return null
+        }
     }
 }
 
