@@ -1,11 +1,14 @@
 import React from 'react'
 import './CSS/App.css'
 import NavBar from './NavBar'
-import AccountsDetails from './AccountsDetails'
+import Signup from './Signup'
+import Login from './Login'
+import AccountsContainer from './AccountsContainer'
 import ContactsDetails from './ContactsDetails'
 import OpportunitiesDetails from './OpportunitiesDetails'
 import ActivitiesDetails from './ActivitiesDetails'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import AccountShow from './AccountShow'
 
 class App extends React.Component {
   
@@ -17,6 +20,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    
     fetch('http://localhost:3001/api/v1/accounts')
     .then(res => res.json())
     .then(data => {
@@ -52,14 +56,20 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('App state', this.state)
+    
     return (
       <div className="App">
         <NavBar />
-        <Route path="/accounts" render={() => <AccountsDetails accounts={this.state.accounts} />} />
-        <Route path="/contacts" render={() => <ContactsDetails contacts={this.state.contacts} />} />
-        <Route path="/opportunities" render={() => <OpportunitiesDetails opportunities={this.state.opportunities} />} />
-        <Route path="/activities" render={() => <ActivitiesDetails activities={this.state.activities} />} />
+        <Switch>
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} accounts={this.state.accounts} />}/>
+          <Route path="/accounts" render={(routerProps) => <AccountsContainer routerProps={routerProps} accounts={this.state.accounts} />} />
+          <Route path="/contacts" render={(routerProps) => <ContactsDetails routerProps={routerProps} contacts={this.state.contacts} />} />
+          <Route path="/opportunities" render={(routerProps) => <OpportunitiesDetails routerProps={routerProps} opportunities={this.state.opportunities} />} />
+          <Route path="/activities" render={(routerProps) => <ActivitiesDetails routerProps={routerProps} activities={this.state.activities} />} />
+          <Route path="/" render={() => <div><h2>Home</h2><h3>Kanban View</h3></div>} />
+        </Switch>
       </div>
     )
   }

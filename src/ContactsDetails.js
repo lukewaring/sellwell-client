@@ -29,14 +29,14 @@ const ContactsDetails = (props) => {
             </TableHead>
             <TableBody>
             {props.contacts.map(contact => (
-                <TableRow key={contact.id}>
+            <TableRow key={contact.id}>
                 <TableCell component="th" scope="row">{contact.account_id}</TableCell>
                 <TableCell align="left">{contact.name}</TableCell>
                 <TableCell align="left">{contact.title}</TableCell>
                 <TableCell align="left">{contact.phone}</TableCell>
                 <TableCell align="left">{contact.email}</TableCell>
                 <TableCell align="left">{contact.notes}</TableCell>
-                </TableRow>
+            </TableRow>
             ))}
             </TableBody>
         </Table>
