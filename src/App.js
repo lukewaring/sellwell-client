@@ -10,6 +10,7 @@ import ActivitiesDetails from './ActivitiesDetails'
 import { Route, Switch } from 'react-router-dom'
 import AccountShow from './AccountShow'
 import AccountForm from './AccountForm'
+import AccountEditForm from './AccountEditForm'
 
 class App extends React.Component {
   
@@ -57,14 +58,15 @@ class App extends React.Component {
   }
 
   render() {
-    
+    // className="App"
     return (
-      <div className="App">
+      <div >
         <NavBar />
         <Switch>
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/accounts/new" render={(routerProps) => <AccountForm routerProps={routerProps} />}/>
+          <Route path="/accounts/:id/edit" render={(routerProps) => <AccountEditForm routerProps={routerProps} accounts={this.state.accounts} />} />
           <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} accounts={this.state.accounts} />}/>
           <Route path="/accounts" render={(routerProps) => <AccountsContainer routerProps={routerProps} accounts={this.state.accounts} />} />
           <Route path="/contacts" render={(routerProps) => <ContactsDetails routerProps={routerProps} contacts={this.state.contacts} />} />

@@ -1,12 +1,16 @@
 import React from 'react'
 // import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Fab from '@material-ui/core/Fab'
+import EditIcon from '@material-ui/icons/Edit'
+import Button from '@material-ui/core/Button'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 class AccountShow extends React.Component {
     
@@ -22,14 +26,27 @@ class AccountShow extends React.Component {
         }))
     }
 
+    nextPath = (path) => {
+        this.props.routerProps.history.push(path);
+    }
+
     render() {
-        
         if (this.state.account) {
-            console.log(this.state.account)
             return (
                     <div>
-
                         <h2>{this.state.account.name}</h2>
+                        <Fab onClick={() => this.nextPath(`/accounts/${this.state.account.id}/edit`) } color="secondary" aria-label="add">
+                            <EditIcon />
+                        </Fab>
+                        <br></br>
+                        <br></br>
+                        <Button onClick={() => console.log('clicked delete button')}
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<DeleteIcon />}
+                        >
+                            Delete
+                        </Button>
                         <h5>Responsible Party: {this.state.account.user.name}</h5>
                         <h5>Industry: {this.state.account.industry}</h5>
                         <a rel="noopener noreferrer" target="_blank" href={this.state.account.website}><h5>Website</h5></a>

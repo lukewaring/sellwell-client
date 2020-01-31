@@ -13,6 +13,7 @@ import AddIcon from '@material-ui/icons/Add'
 import AccountShow from './AccountShow'
 import AccountForm from './AccountForm'
 import { Switch, Route } from 'react-router-dom'
+import AccountEditForm from './AccountEditForm'
 
 class AccountsContainer extends React.Component {
 
@@ -62,6 +63,8 @@ class AccountsContainer extends React.Component {
             />
 
             <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} accounts={this.props.accounts} />} />
+
+            <Route path="/accounts/:id/edit" render={(routerProps) => <AccountEditForm routerProps={routerProps} accounts={this.props.accounts} />} />
 
             </Switch>
 
