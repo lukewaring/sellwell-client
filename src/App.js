@@ -14,6 +14,9 @@ import ContactNewForm from './ContactNewForm'
 import ContactEditForm from './ContactEditForm'
 
 import OpportunitiesTable from './OpportunitiesTable'
+import OpportunityShow from './OpportunityShow'
+import OpportunityNewForm from './OpportunityNewForm'
+import OpportunityEditForm from './OpportunityEditForm'
 
 import ActivitiesTable from './ActivitiesTable'
 
@@ -83,9 +86,12 @@ class App extends React.Component {
           <Route path="/contacts/:id" render={(routerProps) => <ContactShow routerProps={routerProps} />} />
           <Route path="/contacts" render={(routerProps) => <ContactsTable routerProps={routerProps} />} />
 
-          <Route path="/opportunities" render={(routerProps) => <OpportunitiesTable routerProps={routerProps} opportunities={this.state.opportunities} />} />
+          <Route path="/opportunities/new" render={(routerProps) => <OpportunityNewForm routerProps={routerProps} />} />
+          <Route path="/opportunities/:id/edit" render={(routerProps) => <OpportunityEditForm routerProps={routerProps} />} />
+          <Route path="/opportunities/:id" render={(routerProps) => <OpportunityShow routerProps={routerProps} />} />
+          <Route exact path="/opportunities" render={(routerProps) => <OpportunitiesTable routerProps={routerProps} />} />
 
-          <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} activities={this.state.activities} />} />
+          <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />
           
           <Route path="/" render={() => <div><h2>Home</h2><h3>Kanban View</h3></div>} />
         </Switch>

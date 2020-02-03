@@ -64,7 +64,7 @@ class ContactsTable extends React.Component {
                     </TableHead>
                     <TableBody>
                     {this.state.contacts.map(contact => (
-                    <TableRow  key={contact.id}>
+                    <TableRow key={contact.id}>
                         <TableCell component="th" scope="row">{contact.name}</TableCell>
                         <TableCell align="left">{contact.account.name}</TableCell>
                         <TableCell align="left">{contact.title}</TableCell>
