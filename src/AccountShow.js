@@ -13,13 +13,22 @@ import Button from '@material-ui/core/Button'
 import DeleteIcon from '@material-ui/icons/Delete'
 
 class AccountShow extends React.Component {
-    
+
     state = {
-        account: null
+        account: {
+            id: null,
+            name: '',
+            industry: '',
+            website: '',
+            notes: '',
+            contacts: [],
+            opportunities: [],
+            activities: [],
+            user: {}
+        }
     }
 
     componentDidMount() {
-        console.log('inside componentDidMount')
         fetch(`http://localhost:3001/api/v1/accounts/${this.props.routerProps.match.params.id}`)
         .then(res => res.json())
         .then(data => this.setState({
