@@ -3,7 +3,6 @@ import React from 'react'
 class AccountEditForm extends React.Component {
 
     state = {
-        user_id: 2,
         name: '',
         industry: '',
         website: '',
@@ -27,16 +26,13 @@ class AccountEditForm extends React.Component {
         })
     }
 
-    // PATCH is working (updating db) but receiving following error on each edit form submit: 
-    // "Unhandled Rejection (SyntaxError): Unexpected end of JSON input"
-    // Need to debug
     handleSubmit = (e) => {
         e.preventDefault()
         
         fetch(`http://localhost:3001/api/v1/accounts/${this.props.routerProps.match.params.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: JSON.stringify({user_id: this.state.user_id, name: this.state.name, industry: this.state.industry, website: this.state.website, notes: this.state.notes})    
+            body: JSON.stringify({name: this.state.name, industry: this.state.industry, website: this.state.website, notes: this.state.notes})    
         })
         .then(res => res.json())
         .then(data => {
@@ -47,7 +43,13 @@ class AccountEditForm extends React.Component {
                 notes: data.notes
             })
         })
-        }
+        // The following redirect is working, but when the show page loads, the edits are not reflected until the page is reloaded.
+        this.nextPath(`/accounts/${this.props.routerProps.match.params.id}`)
+    }
+
+    nextPath = (path) => {
+        this.props.routerProps.history.push(path);
+    }
 
     render() {
         return (

@@ -10,13 +10,16 @@ class AccountForm extends React.Component {
         notes: ''
     }
 
+    nextPath = (path) => {
+        this.props.routerProps.history.push(path);
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
-    // Do I need to reset state in the second .then here?
     handleSubmit = (e) => {
         e.preventDefault()
         
@@ -26,8 +29,8 @@ class AccountForm extends React.Component {
             body: JSON.stringify({user_id: this.state.user_id, name: this.state.name, industry: this.state.industry, website: this.state.website, notes: this.state.notes})    
         })
         .then(res => res.json())
-        .then(data => console.log(data))
-        }
+        .then(data => this.nextPath(`/accounts/${data.id}`))
+    }
 
     render() {
         return (

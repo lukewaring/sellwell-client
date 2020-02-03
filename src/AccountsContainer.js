@@ -17,10 +17,25 @@ import AccountEditForm from './AccountEditForm'
 
 class AccountsContainer extends React.Component {
 
+    state = {
+        accounts: []
+    }
+
     nextPath = (path) => {
         this.props.routerProps.history.push(path);
     }
     
+    componentDidMount() {
+    
+        fetch('http://localhost:3001/api/v1/accounts')
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            accounts: data
+          })
+        })
+    }
+
     render() {
     
         return (
@@ -47,7 +62,7 @@ class AccountsContainer extends React.Component {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {this.props.accounts.map(account => (
+                    {this.state.accounts.map(account => (
                     <TableRow  key={account.id}>
                         <TableCell component="th" scope="row">{account.name}</TableCell>
                         <TableCell align="left">{account.industry}</TableCell>
@@ -62,9 +77,9 @@ class AccountsContainer extends React.Component {
             }
             />
 
-            <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} accounts={this.props.accounts} />} />
+            <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} accounts={this.state.accounts} />} />
 
-            <Route path="/accounts/:id/edit" render={(routerProps) => <AccountEditForm routerProps={routerProps} accounts={this.props.accounts} />} />
+            <Route path="/accounts/:id/edit" render={(routerProps) => <AccountEditForm routerProps={routerProps} accounts={this.state.accounts} />} />
 
             </Switch>
 

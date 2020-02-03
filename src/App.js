@@ -67,8 +67,8 @@ class App extends React.Component {
           <Route path="/login" component={Login} />
           <Route path="/accounts/new" render={(routerProps) => <AccountForm routerProps={routerProps} />}/>
           <Route path="/accounts/:id/edit" render={(routerProps) => <AccountEditForm routerProps={routerProps} accounts={this.state.accounts} />} />
-          <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} accounts={this.state.accounts} />}/>
-          <Route path="/accounts" render={(routerProps) => <AccountsContainer routerProps={routerProps} accounts={this.state.accounts} />} />
+          <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} />}/>
+          <Route path="/accounts" render={(routerProps) => <AccountsContainer routerProps={routerProps} />} />
           <Route path="/contacts" render={(routerProps) => <ContactsDetails routerProps={routerProps} contacts={this.state.contacts} />} />
           <Route path="/opportunities" render={(routerProps) => <OpportunitiesDetails routerProps={routerProps} opportunities={this.state.opportunities} />} />
           <Route path="/activities" render={(routerProps) => <ActivitiesDetails routerProps={routerProps} activities={this.state.activities} />} />

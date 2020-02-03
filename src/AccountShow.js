@@ -19,6 +19,7 @@ class AccountShow extends React.Component {
     }
 
     componentDidMount() {
+        console.log('inside componentDidMount')
         fetch(`http://localhost:3001/api/v1/accounts/${this.props.routerProps.match.params.id}`)
         .then(res => res.json())
         .then(data => this.setState({
@@ -28,6 +29,11 @@ class AccountShow extends React.Component {
 
     nextPath = (path) => {
         this.props.routerProps.history.push(path);
+    }
+
+    deleteAccount = () => {
+        fetch(`http://localhost:3001/api/v1/accounts/${this.props.routerProps.match.params.id}`, { method: 'DELETE' })
+        this.nextPath('/accounts')
     }
 
     render() {
@@ -40,7 +46,7 @@ class AccountShow extends React.Component {
                         </Fab>
                         <br></br>
                         <br></br>
-                        <Button onClick={() => console.log('clicked delete button')}
+                        <Button onClick={() => window.confirm("Are you sure you want to delete this account?") && this.deleteAccount()}
                             variant="contained"
                             color="secondary"
                             startIcon={<DeleteIcon />}
