@@ -8,9 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const ContactsDetails = (props) => {
-    
-    console.log('ContactsDetails props', props)
+const ContactsContainer = (props) => {
     
     return (
         <div>
@@ -46,4 +44,4 @@ const ContactsDetails = (props) => {
 
 }
 
-export default ContactsDetails;
+export default ContactsContainer;

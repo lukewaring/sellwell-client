@@ -15,7 +15,7 @@ import AccountForm from './AccountForm'
 import { Switch, Route } from 'react-router-dom'
 import AccountEditForm from './AccountEditForm'
 
-class AccountsContainer extends React.Component {
+class AccountsTable extends React.Component {
 
     state = {
         accounts: []
@@ -88,4 +88,4 @@ class AccountsContainer extends React.Component {
     }
 }
 
-export default AccountsContainer;
+export default AccountsTable;

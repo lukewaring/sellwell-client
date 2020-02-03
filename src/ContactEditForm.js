@@ -1,21 +1,23 @@
 import React from 'react'
 
-class AccountEditForm extends React.Component {
+class ContactEditForm extends React.Component {
 
     state = {
         name: '',
-        industry: '',
-        website: '',
+        title: '',
+        phone: '',
+        email: '',
         notes: ''
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3001/api/v1/accounts/${this.props.routerProps.match.params.id}`)
+        fetch(`http://localhost:3001/api/v1/contacts/${this.props.routerProps.match.params.id}`)
         .then(res => res.json())
         .then(data => this.setState({
             name: data.name,
-            industry: data.industry,
-            website: data.website,
+            title: data.title,
+            phone: data.phone,
+            email: data.email,
             notes: data.notes
         }))
     }
@@ -29,22 +31,23 @@ class AccountEditForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         
-        fetch(`http://localhost:3001/api/v1/accounts/${this.props.routerProps.match.params.id}`, {
+        fetch(`http://localhost:3001/api/v1/contacts/${this.props.routerProps.match.params.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: JSON.stringify({name: this.state.name, industry: this.state.industry, website: this.state.website, notes: this.state.notes})    
+            body: JSON.stringify({name: this.state.name, title: this.state.title, phone: this.state.phone, email: this.state.email, notes: this.state.notes})    
         })
         .then(res => res.json())
         .then(data => {
             this.setState({
                 name: data.name,
-                industry: data.industry,
-                website: data.website,
+                title: data.title,
+                phone: data.phone,
+                email: data.email,
                 notes: data.notes
             })
         })
         
-        this.nextPath(`/accounts/${this.props.routerProps.match.params.id}`)
+        this.nextPath(`/contacts/${this.props.routerProps.match.params.id}`)
     }
 
     nextPath = (path) => {
@@ -54,21 +57,26 @@ class AccountEditForm extends React.Component {
     render() {
         return (
             <div>
-            <h2>Edit Account Form</h2>
+            <h2>Edit Contact Form</h2>
             <form onSubmit={e => this.handleSubmit(e)}>
                 <label>
-                    Account Name:
+                    Contact Name:
                     <input onChange={e => this.handleChange(e)} type="text" name="name" value={this.state.name} />
                 </label>
                 <br></br>
                 <label>
-                    Industry:
-                    <input onChange={e => this.handleChange(e)} type="text" name="industry" value={this.state.industry} />
+                    Title:
+                    <input onChange={e => this.handleChange(e)} type="text" name="title" value={this.state.title} />
                 </label>
                 <br></br>
                 <label>
-                    Website:
-                    <input onChange={e => this.handleChange(e)} type="text" name="website" value={this.state.website} />
+                    Phone:
+                    <input onChange={e => this.handleChange(e)} type="text" name="phone" value={this.state.phone} />
+                </label>
+                <br></br>
+                <label>
+                    Email:
+                    <input onChange={e => this.handleChange(e)} type="text" name="email" value={this.state.email} />
                 </label>
                 <br></br>
                 <label>
@@ -84,4 +92,4 @@ class AccountEditForm extends React.Component {
 
 }
 
-export default AccountEditForm
+export default ContactEditForm
