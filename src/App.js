@@ -1,8 +1,10 @@
 import React from 'react'
 // import './CSS/App.css'
+
 import NavBar from './NavBar'
 import Signup from './Signup'
 import Login from './Login'
+
 import AccountsTable from './AccountsTable'
 import AccountShow from './AccountShow'
 import AccountForm from './AccountForm'
@@ -19,6 +21,9 @@ import OpportunityNewForm from './OpportunityNewForm'
 import OpportunityEditForm from './OpportunityEditForm'
 
 import ActivitiesTable from './ActivitiesTable'
+import ActivityShow from './ActivityShow'
+import ActivityNewForm from './ActivityNewForm'
+import ActivityEditForm from './ActivityEditForm'
 
 import { Route, Switch } from 'react-router-dom'
 
@@ -91,6 +96,9 @@ class App extends React.Component {
           <Route path="/opportunities/:id" render={(routerProps) => <OpportunityShow routerProps={routerProps} />} />
           <Route exact path="/opportunities" render={(routerProps) => <OpportunitiesTable routerProps={routerProps} />} />
 
+          <Route path="/activities/new" render={(routerProps) => <ActivityNewForm routerProps={routerProps} />} />
+          <Route path="/activities/:id/edit" render={(routerProps) => <ActivityEditForm routerProps={routerProps} />} />
+          <Route path="/activities/:id" render={(routerProps) => <ActivityShow routerProps={routerProps} />} />
           <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />
           
           <Route path="/" render={() => <div><h2>Home</h2><h3>Kanban View</h3></div>} />

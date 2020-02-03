@@ -55,7 +55,7 @@ class AccountsTable extends React.Component {
                 <Table aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell align="left">Name</TableCell>
+                        <TableCell align="left">Account</TableCell>
                         <TableCell align="left">Industry</TableCell>
                         <TableCell align="left">Website</TableCell>
                         <TableCell align="left">Notes</TableCell>

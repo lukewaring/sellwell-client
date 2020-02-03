@@ -45,8 +45,8 @@ class OpportunitiesTable extends React.Component {
             <Table aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell align="left">Account Id</TableCell>
-                    <TableCell align="left">Name</TableCell>
+                    <TableCell align="left">Opportunity</TableCell>
+                    <TableCell align="left">Account</TableCell>
                     <TableCell align="left">Open Date</TableCell>
                     <TableCell align="left">Close Date</TableCell>
                     <TableCell align="left">Stage</TableCell>
