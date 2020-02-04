@@ -1,40 +1,39 @@
 import React from 'react'
-// import './CSS/App.css'
-
-import { DataObject, dataObj } from './DataObjectOrig'
-import Board from 'react-trello'
+import { Route, Switch } from 'react-router-dom'
 
 import NavBar from './NavBar'
 import Signup from './Signup'
 import Login from './Login'
 
-import AccountsTable from './AccountsTable'
-import AccountShow from './AccountShow'
-import AccountForm from './AccountForm'
-import AccountEditForm from './AccountEditForm'
+import AccountsTable from '../Accounts/AccountsTable'
+import AccountShow from '../Accounts/AccountShow'
+import AccountForm from '../Accounts/AccountForm'
+import AccountEditForm from '../Accounts/AccountEditForm'
 
-import ContactsTable from './ContactsTable'
-import ContactShow from './ContactShow'
-import ContactNewForm from './ContactNewForm'
-import ContactEditForm from './ContactEditForm'
+import ContactsTable from '../Contacts/ContactsTable'
+import ContactShow from '../Contacts/ContactShow'
+import ContactNewForm from '../Contacts/ContactNewForm'
+import ContactEditForm from '../Contacts/ContactEditForm'
 
-import OpportunitiesTable from './OpportunitiesTable'
-import OpportunityShow from './OpportunityShow'
-import OpportunityNewForm from './OpportunityNewForm'
-import OpportunityEditForm from './OpportunityEditForm'
+import OpportunitiesTable from '../Opportunities/OpportunitiesTable'
+import OpportunityShow from '../Opportunities/OpportunityShow'
+import OpportunityNewForm from '../Opportunities/OpportunityNewForm'
+import OpportunityEditForm from '../Opportunities/OpportunityEditForm'
 
-import ActivitiesTable from './ActivitiesTable'
-import ActivityShow from './ActivityShow'
-import ActivityNewForm from './ActivityNewForm'
-import ActivityEditForm from './ActivityEditForm'
+import ActivitiesTable from '../Activities/ActivitiesTable'
+import ActivityShow from '../Activities/ActivityShow'
+import ActivityNewForm from '../Activities/ActivityNewForm'
+import ActivityEditForm from '../Activities/ActivityEditForm'
 
-import { Route, Switch } from 'react-router-dom'
+import Board from 'react-trello'
 
 class App extends React.Component {
 
-  // state = {
-  //   dataObj: { lanes: [] }
-  // }
+  state = {
+    kanbanData: { lanes: [] }
+  }
+  
+  dataObj = { lanes: [] }
 
   getKanbanLanes = () => {
     fetch('http://localhost:3001/api/v1/opportunities')
@@ -46,7 +45,7 @@ class App extends React.Component {
             switch (opportunity.stage) {
     
                 case 'New':
-                    return dataObj['lanes'] = [
+                    return this.dataObj['lanes'] = [
                         {
                             id: 'lane1',
                             title: 'New',
@@ -60,7 +59,7 @@ class App extends React.Component {
                     ]
     
                 case 'Follow-Up':
-                    return dataObj['lanes'] = [...dataObj.lanes, {
+                    return this.dataObj['lanes'] = [...this.dataObj.lanes, {
                         id: 'lane2',
                         title: 'Follow-Up',
                         cards: [{
@@ -72,7 +71,7 @@ class App extends React.Component {
                     }]
     
                 case 'Negotiations':
-                    return dataObj['lanes'] = [...dataObj.lanes, {
+                    return this.dataObj['lanes'] = [...this.dataObj.lanes, {
                         id: 'lane3',
                         title: 'Negotiations',
                         cards: [{
@@ -84,7 +83,7 @@ class App extends React.Component {
                     }]
     
                 case 'Won':
-                    return dataObj['lanes'] = [...dataObj.lanes, {
+                    return this.dataObj['lanes'] = [...this.dataObj.lanes, {
                         id: 'lane4',
                         title: 'Won',
                         cards: [{
@@ -103,18 +102,19 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    
+    this.getKanbanLanes()
+    this.setState({
+      kanbanData: this.dataObj
+    })
   }
 
   render() {
 
-    // console.dir(this.state)
+    console.log('APP.JS STATE', this.state.kanbanData)
 
     return (
       <div >
         <NavBar />
-
-        <DataObject />
         
         <Switch>
           <Route path="/signup" component={Signup} />
@@ -140,7 +140,7 @@ class App extends React.Component {
           <Route path="/activities/:id" render={(routerProps) => <ActivityShow routerProps={routerProps} />} />
           <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />
           
-          <Route path="/" render={(routerProps) => <Board data={dataObj.lanes ? dataObj : {lanes: []}} routerProps={routerProps} />} />
+          <Route path="/" render={(routerProps) => <Board data={this.state.kanbanData} routerProps={routerProps} />} />
         </Switch>
       </div>
     )
