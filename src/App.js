@@ -1,6 +1,9 @@
 import React from 'react'
 // import './CSS/App.css'
 
+import { DataObject, dataObj } from './DataObjectOrig'
+import Board from 'react-trello'
+
 import NavBar from './NavBar'
 import Signup from './Signup'
 import Login from './Login'
@@ -28,55 +31,91 @@ import ActivityEditForm from './ActivityEditForm'
 import { Route, Switch } from 'react-router-dom'
 
 class App extends React.Component {
-  
+
   // state = {
-  //   // accounts: [],
-  //   // contacts: [],
-  //   opportunities: [],
-  //   activities: []
+  //   dataObj: { lanes: [] }
   // }
 
-  // componentDidMount() {
+  getKanbanLanes = () => {
+    fetch('http://localhost:3001/api/v1/opportunities')
+    .then(res => res.json())
+    .then(data => {
+        
+        data.map((opportunity, index) => {
+            
+            switch (opportunity.stage) {
     
-  //   // fetch('http://localhost:3001/api/v1/accounts')
-  //   // .then(res => res.json())
-  //   // .then(data => {
-  //   //   this.setState({
-  //   //     accounts: data
-  //   //   })
-  //   // })
-  
-  //   // fetch('http://localhost:3001/api/v1/contacts')
-  //   // .then(res => res.json())
-  //   // .then(data => {
-  //   //   this.setState({
-  //   //     contacts: data
-  //   //   })
-  //   // })
-  
-  //   fetch('http://localhost:3001/api/v1/opportunities')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     this.setState({
-  //       opportunities: data
-  //     })
-  //   })
+                case 'New':
+                    return dataObj['lanes'] = [
+                        {
+                            id: 'lane1',
+                            title: 'New',
+                            cards: [{
+                                id: `Card${index+1}`,
+                                title: opportunity.name,
+                                description: opportunity.account.name,
+                                label: `$${opportunity.value}`
+                            }]
+                        }
+                    ]
+    
+                case 'Follow-Up':
+                    return dataObj['lanes'] = [...dataObj.lanes, {
+                        id: 'lane2',
+                        title: 'Follow-Up',
+                        cards: [{
+                            id: `Card${index+1}`,
+                            title: opportunity.name,
+                            description: opportunity.account.name,
+                            label: `$${opportunity.value}`
+                        }]
+                    }]
+    
+                case 'Negotiations':
+                    return dataObj['lanes'] = [...dataObj.lanes, {
+                        id: 'lane3',
+                        title: 'Negotiations',
+                        cards: [{
+                            id: `Card${index+1}`,
+                            title: opportunity.name,
+                            description: opportunity.account.name,
+                            label: `$${opportunity.value}`
+                        }]
+                    }]
+    
+                case 'Won':
+                    return dataObj['lanes'] = [...dataObj.lanes, {
+                        id: 'lane4',
+                        title: 'Won',
+                        cards: [{
+                            id: `Card${index+1}`,
+                            title: opportunity.name,
+                            description: opportunity.account.name,
+                            label: `$${opportunity.value}`
+                        }]
+                    }]
+    
+                default:
+                    return null
+            }  
+        })
+    })
+  }
 
-  //   fetch('http://localhost:3001/api/v1/activities')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     this.setState({
-  //       activities: data
-  //     })
-  //   })
-  
-  // }
+  componentDidMount() {
+    
+  }
 
   render() {
-    // className="App"
+
+    // console.dir(this.state)
+
     return (
       <div >
         <NavBar />
+
+        <DataObject />
+        
         <Switch>
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
@@ -101,7 +140,7 @@ class App extends React.Component {
           <Route path="/activities/:id" render={(routerProps) => <ActivityShow routerProps={routerProps} />} />
           <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />
           
-          <Route path="/" render={() => <div><h2>Home</h2><h3>Kanban View</h3></div>} />
+          <Route path="/" render={(routerProps) => <Board data={dataObj.lanes ? dataObj : {lanes: []}} routerProps={routerProps} />} />
         </Switch>
       </div>
     )
