@@ -42,7 +42,7 @@ class AccountsTable extends React.Component {
             <div>
             <h2>Accounts</h2>
             
-            <Fab onClick={() => this.nextPath('/accounts/new') } color="secondary" aria-label="add">
+            <Fab className='add-btn' onClick={() => this.nextPath('/accounts/new') } color="secondary" aria-label="add">
                 <AddIcon />
             </Fab>
 

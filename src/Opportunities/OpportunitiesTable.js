@@ -37,7 +37,7 @@ class OpportunitiesTable extends React.Component {
             <div>
             <h2>Opportunities</h2>
             
-            <Fab onClick={() => this.nextPath('/opportunities/new') } color="secondary" aria-label="add">
+            <Fab className='add-btn' onClick={() => this.nextPath('/opportunities/new') } color="secondary" aria-label="add">
                 <AddIcon />
             </Fab>
             

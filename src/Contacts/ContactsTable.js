@@ -10,10 +10,6 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
-// import ContactShow from './ContactShow'
-// // // import ContactForm from './ContactForm'
-// import ContactEditForm from './ContactEditForm'
-// import { Switch, Route } from 'react-router-dom'
 
 class ContactsTable extends React.Component {
 
@@ -42,13 +38,9 @@ class ContactsTable extends React.Component {
             <div>
             <h2>Contacts</h2>
             
-            <Fab onClick={() => this.nextPath('/contacts/new') } color="secondary" aria-label="add">
+            <Fab className='add-btn' onClick={() => this.nextPath('/contacts/new') } color="secondary" aria-label="add">
                 <AddIcon />
             </Fab>
-
-            {/* <Switch> */}
-
-            {/* <Route path="/contacts/new" render={(routerProps) => <ContactForm routerProps={routerProps} />} /> */}
             
                 <TableContainer component={Paper}>
                 <Table aria-label="simple table">
@@ -77,13 +69,6 @@ class ContactsTable extends React.Component {
                     </TableBody>
                 </Table>
                 </TableContainer>
-
-            {/* <Route path="/contacts/:id" render={(routerProps) => <ContactShow routerProps={routerProps} contacts={this.state.contacts} />} />
-
-            <Route path="/contacts/:id/edit" render={(routerProps) => <ContactEditForm routerProps={routerProps} contacts={this.state.contacts} />} />
-
-            </Switch> */}
-
             </div>
         )
     }

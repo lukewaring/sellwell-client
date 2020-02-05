@@ -37,7 +37,7 @@ class ActivitiesTable extends React.Component {
             <div>
             <h2>Activities</h2>
             
-            <Fab onClick={() => this.nextPath('/activities/new') } color="secondary" aria-label="add">
+            <Fab className='add-btn' onClick={() => this.nextPath('/activities/new') } color="secondary" aria-label="add">
                 <AddIcon />
             </Fab>
             

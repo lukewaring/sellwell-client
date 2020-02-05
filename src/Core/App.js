@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import '../App.css'
 
 import NavBar from './NavBar'
 import Signup from './Signup'
@@ -30,6 +31,7 @@ import Board from 'react-trello'
 class App extends React.Component {
 
   state = {
+    isLoading: true,
     kanbanData: { lanes: [] }
   }
   
@@ -101,19 +103,24 @@ class App extends React.Component {
     })
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getKanbanLanes()
     this.setState({
+      isLoading: false,
       kanbanData: this.dataObj
     })
   }
 
   render() {
 
-    console.log('APP.JS STATE', this.state.kanbanData)
+    console.log('APP.JS STATE', this.state)
+
+    if (this.state.isLoading) {
+			return (<h3>Loading...</h3>)
+		}
 
     return (
-      <div >
+      <div className='App'>
         <NavBar />
         
         <Switch>
