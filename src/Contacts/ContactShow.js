@@ -12,9 +12,12 @@ import EditIcon from '@material-ui/icons/Edit'
 import Button from '@material-ui/core/Button'
 import DeleteIcon from '@material-ui/icons/Delete'
 
+import MessageForm from './MessageForm'
+
 class ContactShow extends React.Component {
 
     state = {
+        emailFormOpen: false,
         contact: {
             id: null,
             name: '',
@@ -45,11 +48,22 @@ class ContactShow extends React.Component {
         this.nextPath('/contacts')
     }
 
+    toggleEmailFormOpen = () => {
+        this.setState({emailFormOpen: !this.state.emailFormOpen})
+    }
+
     render() {
+        if (this.state.emailFormOpen) {
+            return <MessageForm emailFormOpen={this.state.emailFormOpen} contact={this.state.contact} />
+        } else {
+
         if (this.state.contact) {
             return (
                     <div>
                         <h2>{this.state.contact.name}</h2>
+                        <Button onClick={this.toggleEmailFormOpen} variant="contained" color="primary">Send Email</Button>
+                        <br></br>
+                        <br></br>
                         <Fab onClick={() => this.nextPath(`/contacts/${this.state.contact.id}/edit`) } color="secondary" aria-label="add">
                             <EditIcon />
                         </Fab>
@@ -129,7 +143,7 @@ class ContactShow extends React.Component {
         } else {
             return null
         }
-    }
+    }}
 }
 
 export default ContactShow
