@@ -1,3 +1,30 @@
+// First attempt; based on: https://github.com/mui-org/material-ui/blob/master/examples/create-react-app/src/theme.js
+
+import { red } from '@material-ui/core/colors';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#5D75FF',
+    },
+    secondary: {
+      main: '#7DFF95',
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      main: '#fff',
+    },
+    warning: {
+      main: "#ff9800"
+    },
+  }
+});
+
+export default theme;
+
 // Second attempt; based on: https://github.com/devias-io/react-material-dashboard/blob/master/src/theme/index.js
 
 // import { createMuiTheme } from '@material-ui/core';
@@ -17,32 +44,3 @@
 // });
 
 // export default theme;
-
-
-// First attempt; based on: https://github.com/mui-org/material-ui/blob/master/examples/create-react-app/src/theme.js
-
-import { red } from '@material-ui/core/colors';
-import { createMuiTheme } from '@material-ui/core/styles';
-
-// A custom theme for this app
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#556cd6',
-    },
-    secondary: {
-      main: '#19857b',
-    },
-    error: {
-      main: red.A400,
-    },
-    background: {
-      main: '#fff',
-    },
-    warning: {
-      main: "#ff9800"
-    },
-  }
-});
-
-export default theme;

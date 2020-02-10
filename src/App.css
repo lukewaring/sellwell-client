@@ -6,6 +6,10 @@
   float: right;
 }
 
+.delete-btn {
+  background-color: #ff9800;
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;

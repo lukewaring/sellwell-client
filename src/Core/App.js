@@ -172,7 +172,7 @@ class App extends React.Component {
               <Route path="/activities/:id" render={(routerProps) => <ActivityShow routerProps={routerProps} />} />
               <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />
               
-              <Route path="/" render={(routerProps) => <Board data={this.state.kanbanData} routerProps={routerProps} />} />
+              <Route path="/" render={(routerProps) => <Board data={this.state.kanbanData} style={{backgroundColor: '#5c75ffa6'}} routerProps={routerProps} />} />
             </Switch>
             </ThemeProvider>
         </div>
