@@ -1,6 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import '../App.css'
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from '../theme/theme'
 
 import NavBar from './NavBar'
 import Signup from './Signup'
@@ -32,10 +34,33 @@ class App extends React.Component {
 
   state = {
     isLoading: true,
-    kanbanData: { lanes: [] }
+    kanbanData: null
   }
-  
-  dataObj = { lanes: [] }
+
+  dataObj = {
+    lanes: [
+      {
+        id: 'lane1',
+        title: 'New',
+        cards: []
+      },
+      {
+        id: 'lane2',
+        title: 'Follow-Up',
+        cards: []
+      },
+      {
+        id: 'lane3',
+        title: 'Negotiations',
+        cards: []
+      },
+      {
+        id: 'lane4',
+        title: 'Won',
+        cards: []
+      }
+    ]
+  }
 
   getKanbanLanes = () => {
     fetch('http://localhost:3001/api/v1/opportunities')
@@ -47,57 +72,50 @@ class App extends React.Component {
             switch (opportunity.stage) {
     
                 case 'New':
-                    return this.dataObj['lanes'] = [
-                        {
-                            id: 'lane1',
-                            title: 'New',
-                            cards: [{
-                                id: `Card${index+1}`,
-                                title: opportunity.name,
-                                description: opportunity.account.name,
-                                label: `$${opportunity.value}`
-                            }]
-                        }
-                    ]
+                  this.dataObj.lanes[0].cards.push(
+                    {
+                      id: `Card${index+1}`,
+                      title: opportunity.name,
+                      description: opportunity.account.name,
+                      label: `$${opportunity.value}`
+                    }
+                  )
+                  break
     
                 case 'Follow-Up':
-                    return this.dataObj['lanes'] = [...this.dataObj.lanes, {
-                        id: 'lane2',
-                        title: 'Follow-Up',
-                        cards: [{
-                            id: `Card${index+1}`,
-                            title: opportunity.name,
-                            description: opportunity.account.name,
-                            label: `$${opportunity.value}`
-                        }]
-                    }]
+                  this.dataObj.lanes[1].cards.push(
+                    {
+                      id: `Card${index+1}`,
+                      title: opportunity.name,
+                      description: opportunity.account.name,
+                      label: `$${opportunity.value}`
+                    }
+                  )
+                  break
     
                 case 'Negotiations':
-                    return this.dataObj['lanes'] = [...this.dataObj.lanes, {
-                        id: 'lane3',
-                        title: 'Negotiations',
-                        cards: [{
-                            id: `Card${index+1}`,
-                            title: opportunity.name,
-                            description: opportunity.account.name,
-                            label: `$${opportunity.value}`
-                        }]
-                    }]
+                  this.dataObj.lanes[2].cards.push(
+                    {
+                      id: `Card${index+1}`,
+                      title: opportunity.name,
+                      description: opportunity.account.name,
+                      label: `$${opportunity.value}`
+                    }
+                  )
+                  break
     
                 case 'Won':
-                    return this.dataObj['lanes'] = [...this.dataObj.lanes, {
-                        id: 'lane4',
-                        title: 'Won',
-                        cards: [{
-                            id: `Card${index+1}`,
-                            title: opportunity.name,
-                            description: opportunity.account.name,
-                            label: `$${opportunity.value}`
-                        }]
-                    }]
+                  return this.dataObj.lanes[3].cards.push(
+                    {
+                      id: `Card${index+1}`,
+                      title: opportunity.name,
+                      description: opportunity.account.name,
+                      label: `$${opportunity.value}`
+                    }
+                  )
     
                 default:
-                    return null
+                  return null
             }  
         })
     })
@@ -106,10 +124,78 @@ class App extends React.Component {
   componentDidMount () {
     this.getKanbanLanes()
     this.setState({
-      isLoading: false,
       kanbanData: this.dataObj
     })
+    this.setState({
+      isLoading: false,
+    })
   }
+
+//   async function updateLanes() {
+//     const response = await fetch('http://localhost:3001/api/v1/opportunities')
+//     const json = await response.json()
+        
+//     json.map((opportunity, index) => {
+        
+//         switch (opportunity.stage) {
+
+//             case 'New':
+//               this.dataObj.lanes[0].cards.push(
+//                 {
+//                   id: `Card${index+1}`,
+//                   title: opportunity.name,
+//                   description: opportunity.account.name,
+//                   label: `$${opportunity.value}`
+//                 }
+//               )
+//               break
+
+//             case 'Follow-Up':
+//               this.dataObj.lanes[1].cards.push(
+//                 {
+//                   id: `Card${index+1}`,
+//                   title: opportunity.name,
+//                   description: opportunity.account.name,
+//                   label: `$${opportunity.value}`
+//                 }
+//               )
+//               break
+
+//             case 'Negotiations':
+//               this.dataObj.lanes[2].cards.push(
+//                 {
+//                   id: `Card${index+1}`,
+//                   title: opportunity.name,
+//                   description: opportunity.account.name,
+//                   label: `$${opportunity.value}`
+//                 }
+//               )
+//               break
+
+//             case 'Won':
+//               return this.dataObj.lanes[3].cards.push(
+//                 {
+//                   id: `Card${index+1}`,
+//                   title: opportunity.name,
+//                   description: opportunity.account.name,
+//                   label: `$${opportunity.value}`
+//                 }
+//               )
+
+//             default:
+//               return null
+//         }  
+//     })
+
+
+// }
+
+  // async function hello() {
+  //   return greeting = await Promise.resolve("Hello");
+  // };
+  
+  // hello().then(alert);
+
 
   render() {
 
@@ -121,8 +207,9 @@ class App extends React.Component {
 
     return (
       <div className='App'>
+      <ThemeProvider theme={theme}>
         <NavBar />
-        
+                
         <Switch>
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
@@ -149,6 +236,7 @@ class App extends React.Component {
           
           <Route path="/" render={(routerProps) => <Board data={this.state.kanbanData} routerProps={routerProps} />} />
         </Switch>
+        </ThemeProvider>
       </div>
     )
   }

@@ -1,5 +1,4 @@
 import React from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -35,7 +34,7 @@ class ActivitiesTable extends React.Component {
         
         return (
             <div>
-            <h2>Activities</h2>
+            <h2 style={{ textAlign: 'center' }}>Activities</h2>
             
             <Fab className='add-btn' onClick={() => this.nextPath('/activities/new') } color="secondary" aria-label="add">
                 <AddIcon />
@@ -45,10 +44,10 @@ class ActivitiesTable extends React.Component {
             <Table aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell align="left">Activity</TableCell>
-                    <TableCell align="left">Related Opportunity</TableCell>
-                    <TableCell align="left">Date</TableCell>
-                    <TableCell align="left">Notes</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Activity</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Related Opportunity</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Date</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>

@@ -1,5 +1,4 @@
 import React from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -35,7 +34,7 @@ class OpportunitiesTable extends React.Component {
         
         return (
             <div>
-            <h2>Opportunities</h2>
+            <h2 style={{ textAlign: 'center' }}>Opportunities</h2>
             
             <Fab className='add-btn' onClick={() => this.nextPath('/opportunities/new') } color="secondary" aria-label="add">
                 <AddIcon />
@@ -45,14 +44,14 @@ class OpportunitiesTable extends React.Component {
             <Table aria-label="simple table">
                 <TableHead>
                 <TableRow>
-                    <TableCell align="left">Opportunity</TableCell>
-                    <TableCell align="left">Account</TableCell>
-                    <TableCell align="left">Open Date</TableCell>
-                    <TableCell align="left">Close Date</TableCell>
-                    <TableCell align="left">Stage</TableCell>
-                    <TableCell align="left">Value</TableCell>
-                    <TableCell align="left">Priority</TableCell>
-                    <TableCell align="left">Notes</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Opportunity</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Account</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Open Date</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Close Date</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Stage</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Value</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Priority</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>

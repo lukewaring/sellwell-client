@@ -1,5 +1,4 @@
 import React from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -36,7 +35,7 @@ class ContactsTable extends React.Component {
     
         return (
             <div>
-            <h2>Contacts</h2>
+            <h2 style={{ textAlign: 'center' }}>Contacts</h2>
             
             <Fab className='add-btn' onClick={() => this.nextPath('/contacts/new') } color="secondary" aria-label="add">
                 <AddIcon />
@@ -46,12 +45,12 @@ class ContactsTable extends React.Component {
                 <Table aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell align="left">Name</TableCell>
-                        <TableCell align="left">Account</TableCell>
-                        <TableCell align="left">Title</TableCell>
-                        <TableCell align="left">Phone</TableCell>
-                        <TableCell align="left">Email</TableCell>
-                        <TableCell align="left">Notes</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="left">Name</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="left">Account</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="left">Title</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="left">Phone</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="left">Email</TableCell>
+                        <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
