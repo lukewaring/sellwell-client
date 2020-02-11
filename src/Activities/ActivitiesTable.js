@@ -34,7 +34,7 @@ class ActivitiesTable extends React.Component {
         
         return (
             <div>
-            <h2 style={{ textAlign: 'center' }}>Activities</h2>
+            <h1 style={{ textAlign: 'center' }}>Activities</h1>
             
             <Fab className='add-btn' onClick={() => this.nextPath('/activities/new') } color="secondary" aria-label="add">
                 <AddIcon />

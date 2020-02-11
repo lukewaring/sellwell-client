@@ -1,5 +1,5 @@
 import React from 'react'
-// import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -20,7 +20,8 @@ const style = {
     height: 48,
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  };
+    float: 'right'
+  }
 
 class AccountShow extends React.Component {
 
@@ -47,7 +48,7 @@ class AccountShow extends React.Component {
     }
 
     nextPath = (path) => {
-        this.props.routerProps.history.push(path);
+        this.props.routerProps.history.push(path)
     }
 
     deleteAccount = () => {
@@ -59,32 +60,33 @@ class AccountShow extends React.Component {
         if (this.state.account) {
             return (
                     <div>
-                        <h2>{this.state.account.name}</h2>
-                        <Fab onClick={() => this.nextPath(`/accounts/${this.state.account.id}/edit`) } color="secondary" aria-label="add">
-                            <EditIcon />
-                        </Fab>
-                        <br></br>
-                        <br></br>
+                        <h2 style={{ textAlign: 'center' }}>{this.state.account.name}</h2>
+
                         <Button onClick={() => window.confirm("Are you sure you want to delete this account?") && this.deleteAccount()}
                             variant="contained"
-                            // color="warning"
-                            // className="delete-btn"
                             style={style}
                             startIcon={<DeleteIcon />}
                         >
                             Delete
                         </Button>
-                        <h5>Responsible Party: {this.state.account.user.name}</h5>
-                        <h5>Industry: {this.state.account.industry}</h5>
-                        <a rel="noopener noreferrer" target="_blank" href={this.state.account.website}><h5>Website</h5></a>
-                        <h5>Notes: {this.state.account.notes}</h5>
 
-                        <h4>Account Contacts</h4>
+                        <p><strong>Responsible Party</strong></p>
+                        <p>{this.state.account.user.name}</p>
+                        <p><strong>Industry</strong></p>
+                        <p>{this.state.account.industry}</p>
+                        <a style={{color: '#5C74FF'}} rel="noopener noreferrer" target="_blank" href={this.state.account.website}><p><strong>Website</strong></p></a>
+                        <p><strong>Notes</strong></p>
+                        <p>{this.state.account.notes}</p>
+
+                        <Fab onClick={() => this.nextPath(`/accounts/${this.state.account.id}/edit`) } color="secondary" aria-label="add">
+                            <EditIcon />
+                        </Fab>
+
+                        <h3>Contacts</h3>
                         <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
                             <TableRow>
-                                <TableCell align="left">Account Id</TableCell>
                                 <TableCell align="left">Name</TableCell>
                                 <TableCell align="left">Title</TableCell>
                                 <TableCell align="left">Phone</TableCell>
@@ -95,8 +97,7 @@ class AccountShow extends React.Component {
                             <TableBody>
                             {this.state.account.contacts.map(contact => (
                             <TableRow key={contact.id}>
-                                <TableCell component="th" scope="row">{contact.account_id}</TableCell>
-                                <TableCell align="left">{contact.name}</TableCell>
+                                <TableCell component="th" scope="row">{contact.name}</TableCell>
                                 <TableCell align="left">{contact.title}</TableCell>
                                 <TableCell align="left">{contact.phone}</TableCell>
                                 <TableCell align="left">{contact.email}</TableCell>
@@ -107,12 +108,11 @@ class AccountShow extends React.Component {
                         </Table>
                         </TableContainer>
                     
-                        <h4>Account Opportunities</h4>
+                        <h3>Opportunities</h3>
                         <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
                             <TableRow>
-                                <TableCell align="left">Account Id</TableCell>
                                 <TableCell align="left">Name</TableCell>
                                 <TableCell align="left">Open Date</TableCell>
                                 <TableCell align="left">Close Date</TableCell>
@@ -125,8 +125,7 @@ class AccountShow extends React.Component {
                             <TableBody>
                             {this.state.account.opportunities.map(opportunity => (
                             <TableRow key={opportunity.id}>
-                                <TableCell component="th" scope="row">{opportunity.account_id}</TableCell>
-                                <TableCell align="left">{opportunity.name}</TableCell>
+                                <TableCell component="th" scope="row">{opportunity.name}</TableCell>
                                 <TableCell align="left">{opportunity.open_date}</TableCell>
                                 <TableCell align="left">{opportunity.close_date}</TableCell>
                                 <TableCell align="left">{opportunity.value}</TableCell>
@@ -139,12 +138,11 @@ class AccountShow extends React.Component {
                         </Table>
                         </TableContainer>
                         
-                        <h4>Account Activities</h4>
+                        <h3>Activities</h3>
                         <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
                             <TableRow>
-                                <TableCell align="left">Opportunity Id</TableCell>
                                 <TableCell align="left">Name</TableCell>
                                 <TableCell align="left">Date</TableCell>
                                 <TableCell align="left">Notes</TableCell>
@@ -153,8 +151,7 @@ class AccountShow extends React.Component {
                             <TableBody>
                             {this.state.account.activities.map(activity => (
                             <TableRow key={activity.id}>
-                                <TableCell component="th" scope="row">{activity.opportunity_id}</TableCell>
-                                <TableCell align="left">{activity.name}</TableCell>
+                                <TableCell component="th" scope="row">{activity.name}</TableCell>
                                 <TableCell align="left">{activity.date}</TableCell>
                                 <TableCell align="left">{activity.notes}</TableCell>
                             </TableRow>

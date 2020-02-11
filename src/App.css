@@ -1,5 +1,10 @@
 .App {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #F8F8F8;
+  height:100vh;
 }
 
 .add-btn {

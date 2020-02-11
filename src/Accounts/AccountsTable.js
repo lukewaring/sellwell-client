@@ -35,7 +35,7 @@ class AccountsTable extends React.Component {
     
         return (
             <div>
-            <h2 style={{ textAlign: 'center' }}>Accounts</h2>
+            <h1 style={{ textAlign: 'center' }}>Accounts</h1>
             
             <Fab className='add-btn' onClick={() => this.nextPath('/accounts/new') } color="secondary" aria-label="add">
                 <AddIcon />

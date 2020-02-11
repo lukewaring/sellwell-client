@@ -35,7 +35,7 @@ class ContactsTable extends React.Component {
     
         return (
             <div>
-            <h2 style={{ textAlign: 'center' }}>Contacts</h2>
+            <h1 style={{ textAlign: 'center' }}>Contacts</h1>
             
             <Fab className='add-btn' onClick={() => this.nextPath('/contacts/new') } color="secondary" aria-label="add">
                 <AddIcon />

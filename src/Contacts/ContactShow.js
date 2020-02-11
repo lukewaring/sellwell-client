@@ -1,5 +1,5 @@
 import React from 'react'
-// import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -13,6 +13,17 @@ import Button from '@material-ui/core/Button'
 import DeleteIcon from '@material-ui/icons/Delete'
 
 import MessageForm from './MessageForm'
+
+const style = {
+    background: 'linear-gradient(30deg, #FF4F5A 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    float: 'right'
+}
 
 class ContactShow extends React.Component {
 
@@ -60,34 +71,37 @@ class ContactShow extends React.Component {
         if (this.state.contact) {
             return (
                     <div>
-                        <h2>{this.state.contact.name}</h2>
+                        <h2 style={{ textAlign: 'center' }}>{this.state.contact.name}</h2>
                         <Button onClick={this.toggleEmailFormOpen} variant="contained" color="primary">Send Email</Button>
-                        <br></br>
-                        <br></br>
-                        <Fab onClick={() => this.nextPath(`/contacts/${this.state.contact.id}/edit`) } color="secondary" aria-label="add">
-                            <EditIcon />
-                        </Fab>
-                        <br></br>
-                        <br></br>
+
                         <Button onClick={() => window.confirm("Are you sure you want to delete this contact?") && this.deleteContact()}
                             variant="contained"
-                            color="secondary"
+                            style={style}
                             startIcon={<DeleteIcon />}
                         >
                             Delete
                         </Button>
-                        <h5>Account: {this.state.contact.account.name}</h5>
-                        <h5>Title: {this.state.contact.title}</h5>
-                        <h5>Phone: {this.state.contact.phone}</h5>
-                        <h5>Email: {this.state.contact.email}</h5>
-                        <h5>Notes: {this.state.contact.notes}</h5>
+                        
+                        <p><strong>Account</strong></p>
+                        <p>{this.state.contact.account.name}</p>
+                        <p><strong>Title</strong></p>
+                        <p>{this.state.contact.title}</p>
+                        <p><strong>Phone</strong></p>
+                        <p>{this.state.contact.phone}</p>
+                        <p><strong>Email</strong></p>
+                        <p>{this.state.contact.email}</p>
+                        <p><strong>Notes</strong></p>
+                        <p>{this.state.contact.notes}</p>
                     
-                        <h4>Contact Opportunities</h4>
+                        <Fab onClick={() => this.nextPath(`/contacts/${this.state.contact.id}/edit`) } color="secondary" aria-label="add">
+                            <EditIcon />
+                        </Fab>
+
+                        <h4>Opportunities</h4>
                         <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
                             <TableRow>
-                                <TableCell align="left">Account Id</TableCell>
                                 <TableCell align="left">Name</TableCell>
                                 <TableCell align="left">Open Date</TableCell>
                                 <TableCell align="left">Close Date</TableCell>
@@ -100,8 +114,7 @@ class ContactShow extends React.Component {
                             <TableBody>
                             {this.state.contact.opportunities.map(opportunity => (
                             <TableRow key={opportunity.id}>
-                                <TableCell component="th" scope="row">{opportunity.account_id}</TableCell>
-                                <TableCell align="left">{opportunity.name}</TableCell>
+                                <TableCell component="th" scope="row">{opportunity.name}</TableCell>
                                 <TableCell align="left">{opportunity.open_date}</TableCell>
                                 <TableCell align="left">{opportunity.close_date}</TableCell>
                                 <TableCell align="left">{opportunity.value}</TableCell>
@@ -114,12 +127,11 @@ class ContactShow extends React.Component {
                         </Table>
                         </TableContainer>
                         
-                        <h4>Contact Activities</h4>
+                        <h4>Activities</h4>
                         <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
                             <TableRow>
-                                <TableCell align="left">Opportunity Id</TableCell>
                                 <TableCell align="left">Name</TableCell>
                                 <TableCell align="left">Date</TableCell>
                                 <TableCell align="left">Notes</TableCell>
@@ -128,8 +140,7 @@ class ContactShow extends React.Component {
                             <TableBody>
                             {this.state.contact.activities.map(activity => (
                             <TableRow key={activity.id}>
-                                <TableCell component="th" scope="row">{activity.opportunity_id}</TableCell>
-                                <TableCell align="left">{activity.name}</TableCell>
+                                <TableCell component="th" scope="row">{activity.name}</TableCell>
                                 <TableCell align="left">{activity.date}</TableCell>
                                 <TableCell align="left">{activity.notes}</TableCell>
                             </TableRow>

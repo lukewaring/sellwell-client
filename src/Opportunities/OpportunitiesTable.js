@@ -34,7 +34,7 @@ class OpportunitiesTable extends React.Component {
         
         return (
             <div>
-            <h2 style={{ textAlign: 'center' }}>Opportunities</h2>
+            <h1 style={{ textAlign: 'center' }}>Opportunities</h1>
             
             <Fab className='add-btn' onClick={() => this.nextPath('/opportunities/new') } color="secondary" aria-label="add">
                 <AddIcon />
