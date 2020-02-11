@@ -11,7 +11,7 @@ import Login from './Login'
 
 import AccountsTable from '../Accounts/AccountsTable'
 import AccountShow from '../Accounts/AccountShow'
-import AccountForm from '../Accounts/AccountForm'
+import AccountNewForm from '../Accounts/AccountNewForm'
 import AccountEditForm from '../Accounts/AccountEditForm'
 
 import ContactsTable from '../Contacts/ContactsTable'
@@ -34,12 +34,22 @@ import Board from 'react-trello'
 class App extends React.Component {
 
   state = {
+    accounts: [],
+    opportunities: [],
     isLoading: true,
     kanbanData: null
   }
 
   componentDidMount() {
     this.getKanbanLanes()
+
+    fetch('http://localhost:3001/api/v1/accounts')
+    .then(res => res.json())
+    .then(accts => this.setState({accounts: accts}))
+
+    fetch('http://localhost:3001/api/v1/opportunities')
+    .then(res => res.json())
+    .then(opps => this.setState({opportunities: opps}))
   }
 
   getKanbanLanes = () => {
@@ -152,22 +162,22 @@ class App extends React.Component {
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
 
-              <Route path="/accounts/new" render={(routerProps) => <AccountForm routerProps={routerProps} />} />
+              <Route path="/accounts/new" render={(routerProps) => <AccountNewForm routerProps={routerProps} />} />
               <Route path="/accounts/:id/edit" render={(routerProps) => <AccountEditForm routerProps={routerProps} />} />
               <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} />} />
               <Route path="/accounts" render={(routerProps) => <AccountsTable routerProps={routerProps} />} />
 
-              <Route path="/contacts/new" render={(routerProps) => <ContactNewForm routerProps={routerProps} />} />
+              <Route path="/contacts/new" render={(routerProps) => <ContactNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
               <Route path="/contacts/:id/edit" render={(routerProps) => <ContactEditForm routerProps={routerProps} />} />
               <Route path="/contacts/:id" render={(routerProps) => <ContactShow routerProps={routerProps} />} />
               <Route path="/contacts" render={(routerProps) => <ContactsTable routerProps={routerProps} />} />
 
-              <Route path="/opportunities/new" render={(routerProps) => <OpportunityNewForm routerProps={routerProps} />} />
+              <Route path="/opportunities/new" render={(routerProps) => <OpportunityNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
               <Route path="/opportunities/:id/edit" render={(routerProps) => <OpportunityEditForm routerProps={routerProps} />} />
               <Route path="/opportunities/:id" render={(routerProps) => <OpportunityShow routerProps={routerProps} />} />
               <Route exact path="/opportunities" render={(routerProps) => <OpportunitiesTable routerProps={routerProps} />} />
 
-              <Route path="/activities/new" render={(routerProps) => <ActivityNewForm routerProps={routerProps} />} />
+              <Route path="/activities/new" render={(routerProps) => <ActivityNewForm opportunities={this.state.opportunities} routerProps={routerProps} />} />
               <Route path="/activities/:id/edit" render={(routerProps) => <ActivityEditForm routerProps={routerProps} />} />
               <Route path="/activities/:id" render={(routerProps) => <ActivityShow routerProps={routerProps} />} />
               <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />

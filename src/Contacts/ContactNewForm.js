@@ -1,5 +1,10 @@
 import React from 'react'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save'
+import MenuItem from '@material-ui/core/MenuItem'
+
 class ContactNewForm extends React.Component {
 
     state = {
@@ -35,45 +40,55 @@ class ContactNewForm extends React.Component {
 
     render() {
         return (
-            <div>
-            <h2>New Contact Form</h2>
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <label>
-                    Account ID:
-                    <input onChange={e => this.handleChange(e)} type="text" name="account_id" value={this.state.account_id} />
-                </label>
-                <br></br>
-                <label>
-                    Contact Name:
-                    <input onChange={e => this.handleChange(e)} type="text" name="name" value={this.state.name} />
-                </label>
-                <br></br>
-                <label>
-                    Title:
-                    <input onChange={e => this.handleChange(e)} type="text" name="title" value={this.state.title} />
-                </label>
-                <br></br>
-                <label>
-                    Phone:
-                    <input onChange={e => this.handleChange(e)} type="text" name="phone" value={this.state.phone} />
-                </label>
-                <br></br>
-                <label>
-                    Email:
-                    <input onChange={e => this.handleChange(e)} type="text" name="email" value={this.state.email} />
-                </label>
-                <br></br>
-                <label>
-                    Notes:
-                    <input onChange={e => this.handleChange(e)} type="text" name="notes" value={this.state.notes} />
-                </label>
-                <br></br>
-                    <input type="submit" value="Submit" />
-            </form>
+            <div style={{ textAlign: 'center' }}>
+                <h2>New Contact</h2>
+                
+                <form onSubmit={e => this.handleSubmit(e)} noValidate autoComplete="off">
+                    <TextField onChange={e => this.handleChange(e)} label="Name" name="name" value={this.state.name} required />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Title" name="title" value={this.state.title} />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Phone" name="phone" value={this.state.phone} />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Email" name="email" value={this.state.email} />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Notes" name="notes" value={this.state.notes} />
+                    <br></br>
+                    <br></br>
+                    <TextField
+                        select
+                        onChange={e => this.handleChange(e)}
+                        label="Account"
+                        name="account_id"
+                        value={this.state.account_id}
+                        helperText="Please select the contact's account"
+                        required
+                    >
+                        {this.props.accounts.map(acct => (
+                            <MenuItem key={acct.id} value={acct.id}>
+                                {acct.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        size="large"
+                        startIcon={<SaveIcon />}
+                    >
+                    Save
+                    </Button>
+                </form>
             </div>
-        )
+        )}
     }
-
-}
 
 export default ContactNewForm

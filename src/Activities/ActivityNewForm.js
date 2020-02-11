@@ -1,5 +1,10 @@
 import React from 'react'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save'
+import MenuItem from '@material-ui/core/MenuItem'
+
 class ActivityNewForm extends React.Component {
 
     state = {
@@ -32,32 +37,51 @@ class ActivityNewForm extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
-            <div>
-            <h2>New Activity Form</h2>
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <label>
-                    Opportunity ID:
-                    <input onChange={e => this.handleChange(e)} type="text" name="opportunity_id" value={this.state.opportunity_id} />
-                </label>
-                <br></br>
-                <label>
-                    Activity Name:
-                    <input onChange={e => this.handleChange(e)} type="text" name="name" value={this.state.name} />
-                </label>
-                <br></br>
-                <label>
-                    Date (YYYY-MM-DD):
-                    <input onChange={e => this.handleChange(e)} type="text" name="date" value={this.state.date} />
-                </label>
-                <br></br>
-                <label>
-                    Notes:
-                    <input onChange={e => this.handleChange(e)} type="text" name="notes" value={this.state.notes} />
-                </label>
-                <br></br>
-                    <input type="submit" value="Submit" />
-            </form>
+            <div style={{ textAlign: 'center' }}>
+                <h2>New Activity</h2>
+                
+                <form onSubmit={e => this.handleSubmit(e)} noValidate autoComplete="off">
+                    
+                    <TextField onChange={e => this.handleChange(e)} label="Activity Name" name="name" value={this.state.name} required />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Date" name="date" value={this.state.date} required type="date" InputLabelProps={{shrink: true}} />
+                    <br></br>
+                    
+                    <TextField onChange={e => this.handleChange(e)} label="Notes" name="notes" value={this.state.notes} />
+                    <br></br>
+              
+
+                    <TextField
+                        select
+                        onChange={e => this.handleChange(e)}
+                        label="Opportunity"
+                        name="opportunity_id"
+                        value={this.state.opportunity_id}
+                        helperText="Please select the related opportunity"
+                        required
+                    >
+                        {this.props.opportunities.map(opp => (
+                            <MenuItem key={opp.id} value={opp.id}>
+                                {opp.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        size="large"
+                        startIcon={<SaveIcon />}
+                    >
+                    Save
+                    </Button>
+                </form>
             </div>
         )
     }

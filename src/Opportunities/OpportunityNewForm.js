@@ -1,5 +1,10 @@
 import React from 'react'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save'
+import MenuItem from '@material-ui/core/MenuItem'
+
 class OpportunityNewForm extends React.Component {
 
     state = {
@@ -37,51 +42,68 @@ class OpportunityNewForm extends React.Component {
 
     render() {
         return (
-            <div>
-            <h2>New Opportunity Form</h2>
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <label>
-                    Account ID:
-                    <input onChange={e => this.handleChange(e)} type="text" name="account_id" value={this.state.account_id} />
-                </label>
-                <br></br>
-                <label>
-                    Opportunity Name:
-                    <input onChange={e => this.handleChange(e)} type="text" name="name" value={this.state.name} />
-                </label>
-                <br></br>
-                <label>
-                    Open Date (YYYY-MM-DD):
-                    <input onChange={e => this.handleChange(e)} type="text" name="open_date" value={this.state.open_date} />
-                </label>
-                <br></br>
-                <label>
-                    Close Date (YYYY-MM-DD):
-                    <input onChange={e => this.handleChange(e)} type="text" name="close_date" value={this.state.close_date} />
-                </label>
-                <br></br>
-                <label>
-                    Stage (New/Follow-Up/Negotiations/Won):
-                    <input onChange={e => this.handleChange(e)} type="text" name="stage" value={this.state.stage} />
-                </label>
-                <br></br>
-                <label>
-                    Value ($):
-                    <input onChange={e => this.handleChange(e)} type="text" name="value" value={this.state.value} />
-                </label>
-                <br></br>
-                <label>
-                    Priority (High/Medium/Low):
-                    <input onChange={e => this.handleChange(e)} type="text" name="priority" value={this.state.priority} />
-                </label>
-                <br></br>
-                <label>
-                    Notes:
-                    <input onChange={e => this.handleChange(e)} type="text" name="notes" value={this.state.notes} />
-                </label>
-                <br></br>
-                    <input type="submit" value="Submit" />
-            </form>
+            <div style={{ textAlign: 'center' }}>
+                <h2>New Opportunity</h2>
+
+                <form onSubmit={e => this.handleSubmit(e)} noValidate autoComplete="off">
+                    <TextField onChange={e => this.handleChange(e)} label="Deal Name" name="name" value={this.state.name} required />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Open Date" name="open_date" value={this.state.open_date} required type="date" InputLabelProps={{shrink: true}} />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Close Date" name="close_date" value={this.state.close_date} type="date" InputLabelProps={{shrink: true}} />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Stage" name="stage" value={this.state.stage} helperText="Please select the deal value" select required >
+                        <MenuItem value="New">New</MenuItem>
+                        <MenuItem value="Follow-Up">Follow-Up</MenuItem>
+                        <MenuItem value="Negotiations">Negotiations</MenuItem>
+                        <MenuItem value="Won">Won</MenuItem>
+                    </TextField>
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Value ($)" name="value" value={this.state.value} type="number" />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Priority" name="priority" value={this.state.priority} helperText="Please select the deal priority" select >
+                        <MenuItem value="High">High</MenuItem>
+                        <MenuItem value="Medium">Medium</MenuItem>
+                        <MenuItem value="Low">Low</MenuItem>
+                    </TextField>
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Notes" name="notes" value={this.state.notes} />
+                    <br></br>
+                    <br></br>
+                    <TextField
+                        select
+                        onChange={e => this.handleChange(e)}
+                        label="Account"
+                        name="account_id"
+                        value={this.state.account_id}
+                        helperText="Please select the related account"
+                        required
+                    >
+                        {this.props.accounts.map(acct => (
+                            <MenuItem key={acct.id} value={acct.id}>
+                                {acct.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        size="large"
+                        startIcon={<SaveIcon />}
+                    >
+                    Save
+                    </Button>
+                </form>
             </div>
         )
     }
