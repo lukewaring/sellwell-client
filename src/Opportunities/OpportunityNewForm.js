@@ -107,7 +107,6 @@ class OpportunityNewForm extends React.Component {
             </div>
         )
     }
-
 }
 
 export default OpportunityNewForm

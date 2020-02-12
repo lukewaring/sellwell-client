@@ -1,5 +1,9 @@
 import React from 'react'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save'
+
 class ActivityEditForm extends React.Component {
 
     state = {
@@ -50,30 +54,32 @@ class ActivityEditForm extends React.Component {
 
     render() {
         return (
-            <div>
-            <h2>Edit Activity Form</h2>
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <label>
-                    Activity Name:
-                    <input onChange={e => this.handleChange(e)} type="text" name="name" value={this.state.name} />
-                </label>
-                <br></br>
-                <label>
-                    Date:
-                    <input onChange={e => this.handleChange(e)} type="text" name="date" value={this.state.date} />
-                </label>
-                <br></br>
-                <label>
-                    Notes:
-                    <input onChange={e => this.handleChange(e)} type="text" name="notes" value={this.state.notes} />
-                </label>
-                <br></br>
-                    <input type="submit" value="Submit" />
-            </form>
+            <div style={{ textAlign: 'center' }}>
+                <h2>Edit Activity</h2>
+
+                <form onSubmit={e => this.handleSubmit(e)} noValidate autoComplete="off">
+                    <TextField onChange={e => this.handleChange(e)} label="Activity Name" name="name" value={this.state.name} required />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Date" name="date" value={this.state.date} required type="date" InputLabelProps={{shrink: true}} />
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Notes" name="notes" value={this.state.notes} />
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        size="large"
+                        startIcon={<SaveIcon />}
+                    >
+                    Save
+                    </Button>
+                </form>
             </div>
         )
     }
-
 }
 
 export default ActivityEditForm

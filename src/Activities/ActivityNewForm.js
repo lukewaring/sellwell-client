@@ -37,23 +37,18 @@ class ActivityNewForm extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div style={{ textAlign: 'center' }}>
                 <h2>New Activity</h2>
                 
                 <form onSubmit={e => this.handleSubmit(e)} noValidate autoComplete="off">
-                    
                     <TextField onChange={e => this.handleChange(e)} label="Activity Name" name="name" value={this.state.name} required />
                     <br></br>
                     <br></br>
                     <TextField onChange={e => this.handleChange(e)} label="Date" name="date" value={this.state.date} required type="date" InputLabelProps={{shrink: true}} />
                     <br></br>
-                    
                     <TextField onChange={e => this.handleChange(e)} label="Notes" name="notes" value={this.state.notes} />
                     <br></br>
-              
-
                     <TextField
                         select
                         onChange={e => this.handleChange(e)}
@@ -85,7 +80,6 @@ class ActivityNewForm extends React.Component {
             </div>
         )
     }
-
 }
 
 export default ActivityNewForm

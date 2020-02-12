@@ -88,7 +88,8 @@ class ContactNewForm extends React.Component {
                     </Button>
                 </form>
             </div>
-        )}
+        )
     }
+}
 
 export default ContactNewForm

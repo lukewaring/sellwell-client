@@ -1,5 +1,9 @@
 import React from 'react'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save'
+
 class AccountEditForm extends React.Component {
 
     state = {
@@ -53,31 +57,33 @@ class AccountEditForm extends React.Component {
 
     render() {
         return (
-            <div>
-            <h2>Edit Account Form</h2>
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <label>
-                    Account Name:
-                    <input onChange={e => this.handleChange(e)} type="text" name="name" value={this.state.name} />
-                </label>
-                <br></br>
-                <label>
-                    Industry:
-                    <input onChange={e => this.handleChange(e)} type="text" name="industry" value={this.state.industry} />
-                </label>
-                <br></br>
-                <label>
-                    Website:
-                    <input onChange={e => this.handleChange(e)} type="text" name="website" value={this.state.website} />
-                </label>
-                <br></br>
-                <label>
-                    Notes:
-                    <input onChange={e => this.handleChange(e)} type="text" name="notes" value={this.state.notes} />
-                </label>
-                <br></br>
-                    <input type="submit" value="Submit" />
-            </form>
+            <div style={{ textAlign: 'center' }}>
+                <h2>Edit Account</h2>
+
+                <form onSubmit={e => this.handleSubmit(e)} noValidate autoComplete="off">
+                    <TextField onChange={e => this.handleChange(e)} label="Account Name" name="name" value={this.state.name} required />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Industry" name="industry" value={this.state.industry} />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Website" name="website" value={this.state.website} />
+                    <br></br>
+                    <br></br>
+                    <TextField onChange={e => this.handleChange(e)} label="Notes" name="notes" value={this.state.notes} />
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        size="large"
+                        startIcon={<SaveIcon />}
+                    >
+                    Save
+                    </Button>
+                </form>
             </div>
         )
     }
