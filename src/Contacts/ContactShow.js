@@ -65,7 +65,7 @@ class ContactShow extends React.Component {
 
     render() {
         if (this.state.emailFormOpen) {
-            return <MessageForm emailFormOpen={this.state.emailFormOpen} contact={this.state.contact} />
+            return <MessageForm emailFormOpen={this.state.emailFormOpen} contact={this.state.contact} toggleEmailFormOpen={this.toggleEmailFormOpen} />
         } else {
 
         if (this.state.contact) {

@@ -1,10 +1,25 @@
 import React from 'react'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import CancelIcon from '@material-ui/icons/Cancel'
+import SendIcon from '@material-ui/icons/Send'
+
+const style = {
+  background: 'linear-gradient(30deg, #FF4F5A 30%, #FF8E53 90%)',
+  borderRadius: 3,
+  border: 0,
+  color: 'black',
+  height: 40,
+  width: 110,
+  padding: '0 30px',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+}
+
 class MessageForm extends React.Component {
   
   state = {
-    message: '',
-    formSubmitted: false
+    message: ''
   }
 
   sender = 'lwaring89@yahoo.com'
@@ -14,6 +29,7 @@ class MessageForm extends React.Component {
     this.setState({
       message: ''
     })
+    this.props.toggleEmailFormOpen()
   }
 
   handleChange = (event) => {
@@ -32,9 +48,7 @@ class MessageForm extends React.Component {
       this.state.message
     )
 
-    this.setState({
-      formSubmitted: true
-    })
+    this.props.toggleEmailFormOpen()
   }
 
   sendMessage(templateId, senderEmail, receiverEmail, message) {
@@ -43,36 +57,47 @@ class MessageForm extends React.Component {
         from_email: senderEmail,
         to_email: receiverEmail,
         message_html: message
-      }
-      )
-      .then(res => {
-        this.setState({
-          formEmailSent: true
-        })
       })
-      .catch(err => console.error('Failed to send message. Error: ', err))
   }
 
   render() {
-    console.log(this.state)
-    console.log(this.props.contact.email)
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Send an email to:</h1>
-        <h2>{this.props.contact.name}: {this.props.contact.email}</h2>
-        <textarea
-          onChange={this.handleChange}
-          placeholder="Enter your message here"
-          required
-          value={this.state.message}
-        />
-        <div>
-          <button onClick={this.handleCancel}>
+      <div style={{ textAlign: 'center' }}>
+        <h2>New Email</h2>
+        <p><strong>To:  {this.props.contact.name} ({this.props.contact.email})</strong></p>
+
+        <form onSubmit={this.handleSubmit}>
+          <TextField
+            onChange={this.handleChange}
+            value={this.state.message}
+            label="Message"
+            multiline
+            required
+            rows="4"
+            variant="outlined"
+          />
+          <br></br>
+          <br></br>
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            size="large"
+            startIcon={<SendIcon />}
+          >
+            Send
+          </Button>
+          <br></br>
+          <br></br>
+          <Button
+            onClick={this.handleCancel}
+            style={style}
+            startIcon={<CancelIcon />}
+          >
             Cancel
-          </button>
-          <input type="submit" value="Submit"/>
-        </div>
-      </form>
+          </Button>
+        </form>
+      </div>
     )
   }
 }

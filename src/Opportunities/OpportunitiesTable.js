@@ -39,6 +39,10 @@ class OpportunitiesTable extends React.Component {
             <Fab className='add-btn' onClick={() => this.nextPath('/opportunities/new') } color="secondary" aria-label="add">
                 <AddIcon />
             </Fab>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             
             <TableContainer component={Paper}>
             <Table aria-label="simple table">
