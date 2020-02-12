@@ -53,6 +53,7 @@ class AccountsTable extends React.Component {
                         <TableCell style={{ fontWeight: 'bold' }} align="left">Industry</TableCell>
                         <TableCell style={{ fontWeight: 'bold' }} align="left">Website</TableCell>
                         <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
+                        <TableCell style={{ fontWeight: 'bold', color: 'white' }} align="left">View</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -62,7 +63,7 @@ class AccountsTable extends React.Component {
                         <TableCell align="left">{account.industry}</TableCell>
                         <TableCell align="left">{account.website}</TableCell>
                         <TableCell align="left">{account.notes}</TableCell>
-                        <Button variant="contained" color="primary" href={`/accounts/${account.id}`}>View</Button>
+                        <TableCell><Button style={{}} variant="contained" color="primary" href={`/accounts/${account.id}`}>View</Button></TableCell>
                     </TableRow>
                     ))}
                     </TableBody>

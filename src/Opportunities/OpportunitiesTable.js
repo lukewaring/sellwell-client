@@ -56,6 +56,7 @@ class OpportunitiesTable extends React.Component {
                     <TableCell style={{ fontWeight: 'bold' }} align="left">Value</TableCell>
                     <TableCell style={{ fontWeight: 'bold' }} align="left">Priority</TableCell>
                     <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
+                    <TableCell style={{ fontWeight: 'bold', color: 'white' }} align="left">View</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -69,7 +70,7 @@ class OpportunitiesTable extends React.Component {
                     <TableCell align="left">{opportunity.value}</TableCell>
                     <TableCell align="left">{opportunity.priority}</TableCell>
                     <TableCell align="left">{opportunity.notes}</TableCell>
-                    <Button variant="contained" color="primary" href={`/opportunities/${opportunity.id}`}>View</Button>
+                    <TableCell><Button style={{}} variant="contained" color="primary" href={`/opportunities/${opportunity.id}`}>View</Button></TableCell>
                 </TableRow>
                 ))}
                 </TableBody>

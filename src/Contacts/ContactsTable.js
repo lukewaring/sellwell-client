@@ -55,6 +55,7 @@ class ContactsTable extends React.Component {
                         <TableCell style={{ fontWeight: 'bold' }} align="left">Phone</TableCell>
                         <TableCell style={{ fontWeight: 'bold' }} align="left">Email</TableCell>
                         <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
+                        <TableCell style={{ fontWeight: 'bold', color: 'white' }} align="left">View</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -66,7 +67,7 @@ class ContactsTable extends React.Component {
                         <TableCell align="left">{contact.phone}</TableCell>
                         <TableCell align="left">{contact.email}</TableCell>
                         <TableCell align="left">{contact.notes}</TableCell>
-                        <Button variant="contained" color="primary" href={`/contacts/${contact.id}`}>View</Button>
+                        <TableCell><Button style={{}} variant="contained" color="primary" href={`/contacts/${contact.id}`}>View</Button></TableCell>
                     </TableRow>
                     ))}
                     </TableBody>

@@ -52,6 +52,7 @@ class ActivitiesTable extends React.Component {
                     <TableCell style={{ fontWeight: 'bold' }} align="left">Related Opportunity</TableCell>
                     <TableCell style={{ fontWeight: 'bold' }} align="left">Date</TableCell>
                     <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
+                    <TableCell style={{ fontWeight: 'bold', color: 'white' }} align="left">View</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -61,7 +62,7 @@ class ActivitiesTable extends React.Component {
                     <TableCell align="left">{activity.opportunity.name}</TableCell>
                     <TableCell align="left">{activity.date}</TableCell>
                     <TableCell align="left">{activity.notes}</TableCell>
-                    <Button variant="contained" color="primary" href={`/activities/${activity.id}`}>View</Button>
+                    <TableCell><Button style={{}} variant="contained" color="primary" href={`/activities/${activity.id}`}>View</Button></TableCell>
                 </TableRow>
                 ))}
                 </TableBody>
