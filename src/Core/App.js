@@ -175,7 +175,7 @@ class App extends React.Component {
               <Route path="/opportunities/new" render={(routerProps) => <OpportunityNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
               <Route path="/opportunities/:id/edit" render={(routerProps) => <OpportunityEditForm routerProps={routerProps} />} />
               <Route path="/opportunities/:id" render={(routerProps) => <OpportunityShow routerProps={routerProps} />} />
-              <Route exact path="/opportunities" render={(routerProps) => <OpportunitiesTable routerProps={routerProps} />} />
+              <Route path="/opportunities" render={(routerProps) => <OpportunitiesTable routerProps={routerProps} />} />
 
               <Route path="/activities/new" render={(routerProps) => <ActivityNewForm opportunities={this.state.opportunities} routerProps={routerProps} />} />
               <Route path="/activities/:id/edit" render={(routerProps) => <ActivityEditForm routerProps={routerProps} />} />
