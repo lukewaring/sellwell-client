@@ -128,8 +128,8 @@ class AccountShow extends React.Component {
                                 <TableCell component="th" scope="row">{opportunity.name}</TableCell>
                                 <TableCell align="left">{opportunity.open_date}</TableCell>
                                 <TableCell align="left">{opportunity.close_date}</TableCell>
-                                <TableCell align="left">{opportunity.value}</TableCell>
                                 <TableCell align="left">{opportunity.stage}</TableCell>
+                                <TableCell align="left">{opportunity.value}</TableCell>
                                 <TableCell align="left">{opportunity.priority}</TableCell>
                                 <TableCell align="left">{opportunity.notes}</TableCell>
                             </TableRow>
