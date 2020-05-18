@@ -1,8 +1,8 @@
 <h1 align="center">Sellwell</h1>
 
-<p>A simple CRM that helps freelancers track and organize their sales process.</p>
+<p>💼 A simple CRM that helps freelancers track and organize their sales process 💵</p>
 
-<a href="https://www.beautiful.ai/player/-M7cwadhXFOa1WvCQpIc" target="blank"><img src="public/sellwell.jpeg" alt="Cover slide of Sellwell deck">View Sellwell Presentation</a>
+<a href="https://www.beautiful.ai/player/-M7cwadhXFOa1WvCQpIc" target="_blank" align="center"><img src="public/sellwell.jpeg" alt="Cover slide of Sellwell deck">View Sellwell Presentation</a>
 
 ## Rationale
 
@@ -15,7 +15,6 @@
 ## Technology Stack
 
 ### Frontend
-
 - [React](https://reactjs.org/)
 - [React Router](https://reacttraining.com/react-router/)
 - [Material-UI](https://material-ui.com/)
@@ -23,7 +22,6 @@
 - [react-trello](https://github.com/rcdexta/react-trello)
 
 ### Backend
-
 - [Repo for backend](https://github.com/lukewaring/sellwell-api)
 - [Ruby on Rails](https://rubyonrails.org/)
 - [Faker](https://github.com/faker-ruby/faker)
