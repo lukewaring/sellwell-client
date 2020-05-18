@@ -1,8 +1,8 @@
 <h1 align="center">Sellwell</h1>
 
-<p>💼 A simple CRM that helps freelancers track and organize their sales process 💵</p>
+<p>A simple CRM that helps freelancers track and organize their sales process</p>
 
-<a href="https://www.beautiful.ai/player/-M7cwadhXFOa1WvCQpIc" target="_blank" align="center"><img src="public/sellwell.jpeg" alt="Cover slide of Sellwell deck">View Sellwell Presentation</a>
+<p align="center"><a href="https://www.beautiful.ai/player/-M7cwadhXFOa1WvCQpIc" target="_blank"><img src="public/sellwell.jpeg" alt="Cover slide of Sellwell deck">View Sellwell Presentation</a></p>
 
 ## Rationale
 
