@@ -11,18 +11,16 @@ import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 
 class AccountsTable extends React.Component {
-
     state = {
-        accounts: []
+      accounts: []
     }
 
     nextPath = (path) => {
-        this.props.routerProps.history.push(path);
+      this.props.routerProps.history.push(path)
     }
-    
-    componentDidMount() {
-    
-        fetch('http://localhost:3001/api/v1/accounts')
+
+    componentDidMount () {
+      fetch('http://localhost:3001/api/v1/accounts')
         .then(res => res.json())
         .then(data => {
           this.setState({
@@ -31,46 +29,45 @@ class AccountsTable extends React.Component {
         })
     }
 
-    render() {
-    
-        return (
-            <div>
-            <h1 style={{ textAlign: 'center' }}>Accounts</h1>
-            
-            <Fab className='add-btn' onClick={() => this.nextPath('/accounts/new') } color="secondary" aria-label="add">
-                <AddIcon />
-            </Fab>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+    render () {
+      return (
+        <div>
+          <h1 style={{ textAlign: 'center' }}>Accounts</h1>
 
-                <TableContainer component={Paper}>
-                <Table aria-label="simple table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell style={{ fontWeight: 'bold' }} align="left">Name</TableCell>
-                        <TableCell style={{ fontWeight: 'bold' }} align="left">Industry</TableCell>
-                        <TableCell style={{ fontWeight: 'bold' }} align="left">Website</TableCell>
-                        <TableCell style={{ fontWeight: 'bold' }} align="left">Notes</TableCell>
-                        <TableCell style={{ fontWeight: 'bold', color: 'white' }} align="left">View</TableCell>
-                    </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {this.state.accounts.map(account => (
-                    <TableRow key={account.id}>
-                        <TableCell component="th" scope="row">{account.name}</TableCell>
-                        <TableCell align="left">{account.industry}</TableCell>
-                        <TableCell align="left">{account.website}</TableCell>
-                        <TableCell align="left">{account.notes}</TableCell>
-                        <TableCell><Button style={{}} variant="contained" color="primary" href={`/accounts/${account.id}`}>View</Button></TableCell>
-                    </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-                </TableContainer>
-            </div>
-        )
+          <Fab className='add-btn' onClick={() => this.nextPath('/accounts/new')} color='secondary' aria-label='add'>
+            <AddIcon />
+          </Fab>
+          <br />
+          <br />
+          <br />
+          <br />
+
+          <TableContainer component={Paper}>
+            <Table aria-label='simple table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell style={{ fontWeight: 'bold' }} align='left'>Name</TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }} align='left'>Industry</TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }} align='left'>Website</TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }} align='left'>Notes</TableCell>
+                  <TableCell style={{ fontWeight: 'bold', color: 'white' }} align='left'>View</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.state.accounts.map(account => (
+                  <TableRow key={account.id}>
+                    <TableCell component='th' scope='row'>{account.name}</TableCell>
+                    <TableCell align='left'>{account.industry}</TableCell>
+                    <TableCell align='left'>{account.website}</TableCell>
+                    <TableCell align='left'>{account.notes}</TableCell>
+                    <TableCell><Button style={{}} variant='contained' color='primary' href={`/accounts/${account.id}`}>View</Button></TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      )
     }
 }
 

@@ -32,7 +32,6 @@ import ActivityEditForm from '../Activities/ActivityEditForm'
 import Board from 'react-trello'
 
 class App extends React.Component {
-
   state = {
     accounts: [],
     opportunities: [],
@@ -40,27 +39,27 @@ class App extends React.Component {
     kanbanData: null
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getKanbanLanes()
 
     fetch('http://localhost:3001/api/v1/accounts')
-    .then(res => res.json())
-    .then(accts => this.setState({accounts: accts}))
+      .then(res => res.json())
+      .then(accts => this.setState({ accounts: accts }))
 
     fetch('http://localhost:3001/api/v1/opportunities')
-    .then(res => res.json())
-    .then(opps => this.setState({opportunities: opps}))
+      .then(res => res.json())
+      .then(opps => this.setState({ opportunities: opps }))
   }
 
   getKanbanLanes = () => {
     fetch('http://localhost:3001/api/v1/opportunities')
-    .then(res => res.json())
-    .then(opps => this.parseKanbanLanes(opps))
-    .then(kanbanData => this.setState({
+      .then(res => res.json())
+      .then(opps => this.parseKanbanLanes(opps))
+      .then(kanbanData => this.setState({
         kanbanData: kanbanData,
         isLoading: false
       })
-    )        
+      )
   }
 
   parseKanbanLanes = (opps) => {
@@ -91,101 +90,99 @@ class App extends React.Component {
 
     // eslint-disable-next-line
     opps.map(opportunity => {
-            
+
       switch (opportunity.stage) {
+        case 'New':
 
-          case 'New':
-            
-            kanbanData.lanes[0].cards.push(
-              {
-                id: `Card${opportunity.id}`,
-                title: opportunity.name,
-                description: opportunity.account.name,
-                label: `$${opportunity.value}`
-              }
-            )
-            break
+          kanbanData.lanes[0].cards.push(
+            {
+              id: `Card${opportunity.id}`,
+              title: opportunity.name,
+              description: opportunity.account.name,
+              label: `$${opportunity.value}`
+            }
+          )
+          break
 
-          case 'Follow-Up':
-            
-            kanbanData.lanes[1].cards.push(
-              {
-                id: `Card${opportunity.id}`,
-                title: opportunity.name,
-                description: opportunity.account.name,
-                label: `$${opportunity.value}`
-              }
-            )
-            break
+        case 'Follow-Up':
 
-          case 'Negotiations':
-            
-            kanbanData.lanes[2].cards.push(
-              {
-                id: `Card${opportunity.id}`,
-                title: opportunity.name,
-                description: opportunity.account.name,
-                label: `$${opportunity.value}`
-              }
-            )
-            break
+          kanbanData.lanes[1].cards.push(
+            {
+              id: `Card${opportunity.id}`,
+              title: opportunity.name,
+              description: opportunity.account.name,
+              label: `$${opportunity.value}`
+            }
+          )
+          break
 
-          case 'Won':
-            
-            kanbanData.lanes[3].cards.push(
-              {
-                id: `Card${opportunity.id}`,
-                title: opportunity.name,
-                description: opportunity.account.name,
-                label: `$${opportunity.value}`
-              }
-            )
-            break
-          
-          default:
-            return null
+        case 'Negotiations':
+
+          kanbanData.lanes[2].cards.push(
+            {
+              id: `Card${opportunity.id}`,
+              title: opportunity.name,
+              description: opportunity.account.name,
+              label: `$${opportunity.value}`
+            }
+          )
+          break
+
+        case 'Won':
+
+          kanbanData.lanes[3].cards.push(
+            {
+              id: `Card${opportunity.id}`,
+              title: opportunity.name,
+              description: opportunity.account.name,
+              label: `$${opportunity.value}`
+            }
+          )
+          break
+
+        default:
+          return null
       }
     })
     return kanbanData
   }
 
-  render() {
-
+  render () {
     console.log('APP.JS STATE', this.state)
 
     return (
-      this.state.isLoading ? <h3 style={{ textAlign: 'center' }}>Loading...</h3>  :
-        <div className='App'>
+      this.state.isLoading ? <h3 style={{ textAlign: 'center' }}>Loading...</h3>
+        : <div className='App'>
           <ThemeProvider theme={theme}>
             <NavBar />
             <Switch>
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
+              <Route path='/signup' component={Signup} />
+              <Route path='/login' component={Login} />
 
-              <Route path="/accounts/new" render={(routerProps) => <AccountNewForm routerProps={routerProps} />} />
-              <Route path="/accounts/:id/edit" render={(routerProps) => <AccountEditForm routerProps={routerProps} />} />
-              <Route path="/accounts/:id" render={(routerProps) => <AccountShow routerProps={routerProps} />} />
-              <Route path="/accounts" render={(routerProps) => <AccountsTable routerProps={routerProps} />} />
+              <Route path='/accounts/new' render={(routerProps) => <AccountNewForm routerProps={routerProps} />} />
+              <Route path='/accounts/:id/edit' render={(routerProps) => <AccountEditForm routerProps={routerProps} />} />
+              <Route path='/accounts/:id' render={(routerProps) => <AccountShow routerProps={routerProps} />} />
+              <Route path='/accounts' render={(routerProps) => <AccountsTable routerProps={routerProps} />} />
 
-              <Route path="/contacts/new" render={(routerProps) => <ContactNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
-              <Route path="/contacts/:id/edit" render={(routerProps) => <ContactEditForm routerProps={routerProps} />} />
-              <Route path="/contacts/:id" render={(routerProps) => <ContactShow routerProps={routerProps} />} />
-              <Route path="/contacts" render={(routerProps) => <ContactsTable routerProps={routerProps} />} />
+              <Route path='/contacts/new' render={(routerProps) => <ContactNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
+              <Route path='/contacts/:id/edit' render={(routerProps) => <ContactEditForm routerProps={routerProps} />} />
+              <Route path='/contacts/:id' render={(routerProps) => <ContactShow routerProps={routerProps} />} />
+              <Route path='/contacts' render={(routerProps) => <ContactsTable routerProps={routerProps} />} />
 
-              <Route path="/opportunities/new" render={(routerProps) => <OpportunityNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
-              <Route path="/opportunities/:id/edit" render={(routerProps) => <OpportunityEditForm routerProps={routerProps} />} />
-              <Route path="/opportunities/:id" render={(routerProps) => <OpportunityShow routerProps={routerProps} />} />
-              <Route path="/opportunities" render={(routerProps) => <OpportunitiesTable routerProps={routerProps} />} />
+              <Route path='/opportunities/new' render={(routerProps) => <OpportunityNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
+              <Route path='/opportunities/:id/edit' render={(routerProps) => <OpportunityEditForm routerProps={routerProps} />} />
+              <Route path='/opportunities/:id' render={(routerProps) => <OpportunityShow routerProps={routerProps} />} />
+              <Route path='/opportunities' render={(routerProps) => <OpportunitiesTable routerProps={routerProps} />} />
 
-              <Route path="/activities/new" render={(routerProps) => <ActivityNewForm opportunities={this.state.opportunities} routerProps={routerProps} />} />
-              <Route path="/activities/:id/edit" render={(routerProps) => <ActivityEditForm routerProps={routerProps} />} />
-              <Route path="/activities/:id" render={(routerProps) => <ActivityShow routerProps={routerProps} />} />
-              <Route path="/activities" render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />
-              
-              <Route path="/" render={(routerProps) => <Board data={this.state.kanbanData} style={{backgroundColor: '#ACB8FF'}} routerProps={routerProps} />} />
+              <Route path='/activities/new' render={(routerProps) => <ActivityNewForm opportunities={this.state.opportunities} routerProps={routerProps} />} />
+              <Route path='/activities/:id/edit' render={(routerProps) => <ActivityEditForm routerProps={routerProps} />} />
+              <Route path='/activities/:id' render={(routerProps) => <ActivityShow routerProps={routerProps} />} />
+              <Route path='/activities' render={(routerProps) => <ActivitiesTable routerProps={routerProps} />} />
+
+              <Route path='/' render={(routerProps) => <Board data={this.state.kanbanData} style={{ backgroundColor: '#ACB8FF' }} routerProps={routerProps} />} />
             </Switch>
-            </ThemeProvider>
-        </div>
+          </ThemeProvider>
+        </div> // eslint-disable-line
     )
   }
 }

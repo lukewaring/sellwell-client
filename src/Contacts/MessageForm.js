@@ -17,7 +17,6 @@ const style = {
 }
 
 class MessageForm extends React.Component {
-  
   state = {
     message: ''
   }
@@ -51,7 +50,7 @@ class MessageForm extends React.Component {
     this.props.toggleEmailFormOpen()
   }
 
-  sendMessage(templateId, senderEmail, receiverEmail, message) {
+  sendMessage (templateId, senderEmail, receiverEmail, message) {
     window.emailjs
       .send('default_service', templateId, {
         from_email: senderEmail,
@@ -60,7 +59,7 @@ class MessageForm extends React.Component {
       })
   }
 
-  render() {
+  render () {
     return (
       <div style={{ textAlign: 'center' }}>
         <h2>New Email</h2>
@@ -70,25 +69,25 @@ class MessageForm extends React.Component {
           <TextField
             onChange={this.handleChange}
             value={this.state.message}
-            label="Message"
+            label='Message'
             multiline
             required
-            rows="4"
-            variant="outlined"
+            rows='4'
+            variant='outlined'
           />
-          <br></br>
-          <br></br>
+          <br />
+          <br />
           <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            size="large"
+            type='submit'
+            variant='contained'
+            color='secondary'
+            size='large'
             startIcon={<SendIcon />}
           >
             Send
           </Button>
-          <br></br>
-          <br></br>
+          <br />
+          <br />
           <Button
             onClick={this.handleCancel}
             style={style}
