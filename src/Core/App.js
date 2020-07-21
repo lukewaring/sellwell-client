@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import '../App.css'
 import { ThemeProvider } from '@material-ui/core/styles'
-import theme from '../theme/theme'
+
+import '../styles/App.css'
+import theme from '../styles/theme'
 
 import NavBar from './NavBar'
 import Signup from './Signup'
@@ -148,8 +149,6 @@ class App extends React.Component {
   }
 
   render () {
-    console.log('APP.JS STATE', this.state)
-
     return (
       this.state.isLoading ? <h3 style={{ textAlign: 'center' }}>Loading...</h3>
         : <div className='App'>

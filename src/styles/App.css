@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #F8F8F8;
+}
+
+.add-btn {
+  float: right;
+}
+
+html {
+  background-color: #F8F8F8;
+}
