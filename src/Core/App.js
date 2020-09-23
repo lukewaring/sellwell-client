@@ -30,6 +30,8 @@ import ActivityShow from '../Activities/ActivityShow'
 import ActivityNewForm from '../Activities/ActivityNewForm'
 import ActivityEditForm from '../Activities/ActivityEditForm'
 
+import * as API from './API'
+
 import Board from 'react-trello'
 
 class App extends React.Component {
@@ -40,30 +42,25 @@ class App extends React.Component {
     kanbanData: null
   }
 
-  componentDidMount () {
-    this.getKanbanLanes()
+  async componentDidMount () {
+    const accounts = await API.fetchAccounts()
+    this.setState({ accounts: accounts })
 
-    fetch('http://localhost:3001/api/v1/accounts')
-      .then(res => res.json())
-      .then(accts => this.setState({ accounts: accts }))
+    const opportunities = await API.fetchOpportunities()
+    this.setState({ opportunities: opportunities })
 
-    fetch('http://localhost:3001/api/v1/opportunities')
-      .then(res => res.json())
-      .then(opps => this.setState({ opportunities: opps }))
+    this.getKanbanLanes(opportunities)
   }
 
-  getKanbanLanes = () => {
-    fetch('http://localhost:3001/api/v1/opportunities')
-      .then(res => res.json())
-      .then(opps => this.parseKanbanLanes(opps))
-      .then(kanbanData => this.setState({
-        kanbanData: kanbanData,
-        isLoading: false
-      })
-      )
+  getKanbanLanes (opportunities) {
+    const kanbanData = this.parseKanbanLanes(opportunities)
+    this.setState({
+      kanbanData: kanbanData,
+      isLoading: false 
+    })
   }
 
-  parseKanbanLanes = (opps) => {
+  parseKanbanLanes (opportunities) {
     const kanbanData = {
       lanes: [
         {
@@ -90,7 +87,7 @@ class App extends React.Component {
     }
 
     // eslint-disable-next-line
-    opps.map(opportunity => {
+    opportunities.map((opportunity) => {
 
       switch (opportunity.stage) {
         case 'New':
