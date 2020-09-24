@@ -11,22 +11,9 @@ import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 
 class AccountsTable extends React.Component {
-    state = {
-      accounts: []
-    }
 
     nextPath = (path) => {
       this.props.routerProps.history.push(path)
-    }
-
-    componentDidMount () {
-      fetch('http://localhost:3001/api/v1/accounts')
-        .then(res => res.json())
-        .then(data => {
-          this.setState({
-            accounts: data
-          })
-        })
     }
 
     render () {
@@ -54,7 +41,7 @@ class AccountsTable extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.state.accounts.map(account => (
+                {this.props.accounts.map(account => (
                   <TableRow key={account.id}>
                     <TableCell component='th' scope='row'>{account.name}</TableCell>
                     <TableCell align='left'>{account.industry}</TableCell>

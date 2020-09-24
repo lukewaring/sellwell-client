@@ -28,7 +28,7 @@ class MessageForm extends React.Component {
     this.setState({
       message: ''
     })
-    this.props.toggleEmailFormOpen()
+    this.props.handleToggleEmailForm()
   }
 
   handleChange = (event) => {
@@ -47,7 +47,7 @@ class MessageForm extends React.Component {
       this.state.message
     )
 
-    this.props.toggleEmailFormOpen()
+    this.props.handleToggleEmailForm()
   }
 
   sendMessage (templateId, senderEmail, receiverEmail, message) {

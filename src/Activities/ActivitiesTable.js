@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 
+import * as API from '../Core/API'
+
 class ActivitiesTable extends React.Component {
     state = {
       activities: []
@@ -19,14 +21,9 @@ class ActivitiesTable extends React.Component {
       this.props.routerProps.history.push(path)
     }
 
-    componentDidMount () {
-      fetch('http://localhost:3001/api/v1/activities')
-        .then(res => res.json())
-        .then(data => {
-          this.setState({
-            activities: data
-          })
-        })
+    async componentDidMount () {
+      const activities = await API.fetchActivities()
+      this.setState({ activities: activities })
     }
 
     render () {

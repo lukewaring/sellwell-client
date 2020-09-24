@@ -36,7 +36,6 @@ class AccountNewForm extends React.Component {
     }
 
     render () {
-      console.log(this.state)
       return (
         <div style={{ textAlign: 'center' }}>
           <h2>New Account</h2>

@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import { ThemeProvider } from '@material-ui/core/styles'
-
 import '../styles/App.css'
 import theme from '../styles/theme'
 
@@ -39,7 +38,7 @@ class App extends React.Component {
     accounts: [],
     opportunities: [],
     isLoading: true,
-    kanbanData: null
+    kanbanData: {}
   }
 
   async componentDidMount () {
@@ -49,18 +48,18 @@ class App extends React.Component {
     const opportunities = await API.fetchOpportunities()
     this.setState({ opportunities: opportunities })
 
-    this.getKanbanLanes(opportunities)
+    this.setKanbanData(opportunities)
   }
 
-  getKanbanLanes (opportunities) {
-    const kanbanData = this.parseKanbanLanes(opportunities)
+  setKanbanData (opportunities) {
+    const kanbanData = this.mapOppsToKanbanData(opportunities)
     this.setState({
       kanbanData: kanbanData,
       isLoading: false 
     })
   }
 
-  parseKanbanLanes (opportunities) {
+  mapOppsToKanbanData (opportunities) {
     const kanbanData = {
       lanes: [
         {
@@ -158,7 +157,7 @@ class App extends React.Component {
               <Route path='/accounts/new' render={(routerProps) => <AccountNewForm routerProps={routerProps} />} />
               <Route path='/accounts/:id/edit' render={(routerProps) => <AccountEditForm routerProps={routerProps} />} />
               <Route path='/accounts/:id' render={(routerProps) => <AccountShow routerProps={routerProps} />} />
-              <Route path='/accounts' render={(routerProps) => <AccountsTable routerProps={routerProps} />} />
+              <Route path='/accounts' render={(routerProps) => <AccountsTable routerProps={routerProps} accounts={this.state.accounts} />} />
 
               <Route path='/contacts/new' render={(routerProps) => <ContactNewForm accounts={this.state.accounts} routerProps={routerProps} />} />
               <Route path='/contacts/:id/edit' render={(routerProps) => <ContactEditForm routerProps={routerProps} />} />
@@ -178,7 +177,7 @@ class App extends React.Component {
               <Route path='/' render={(routerProps) => <Board data={this.state.kanbanData} style={{ backgroundColor: '#ACB8FF' }} routerProps={routerProps} />} />
             </Switch>
           </ThemeProvider>
-        </div> // eslint-disable-line
+        </div>
     )
   }
 }
