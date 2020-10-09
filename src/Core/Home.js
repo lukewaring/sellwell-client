@@ -15,22 +15,29 @@ class KanbanBoard extends React.Component {
       <div className="App">
         <ThemeProvider theme={theme}>
           <NavBar />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => this.nextPath("/signup")}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
-            Signup
-          </Button>
-          <br></br>
-          <br></br>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => this.nextPath("/login")}
-          >
-            Login
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => this.nextPath("/signup")}
+              style={{ margin: "1rem" }}
+            >
+              Signup
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => this.nextPath("/login")}
+              style={{ margin: "1rem" }}
+            >
+              Login
+            </Button>
+          </div>
         </ThemeProvider>
       </div>
     );

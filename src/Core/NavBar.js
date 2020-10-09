@@ -21,7 +21,7 @@ class NavBar extends React.Component {
               to="/kanbanboard"
               style={{ textDecoration: "none", color: "white" }}
             >
-              <Tab style={styles.tab} label="&nbsp;Board&nbsp;" />
+              <Tab style={styles.tab} label="&nbsp;Pipeline&nbsp;" />
             </Link>
             <Link
               to="/accounts"
