@@ -115,7 +115,11 @@ class KanbanBoard extends React.Component {
             render={(routerProps) => (
               <Board
                 data={this.state.kanbanData}
-                style={{ backgroundColor: "#ACB8FF" }}
+                style={{
+                  backgroundColor: "#ACB8FF",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
                 routerProps={routerProps}
               />
             )}
