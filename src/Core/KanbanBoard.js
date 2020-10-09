@@ -109,7 +109,7 @@ class KanbanBoard extends React.Component {
     return this.state.isLoading ? (
       <h3 style={{ textAlign: "center" }}>Loading...</h3>
     ) : (
-      <div className="App">
+      <div>
         <ThemeProvider theme={theme}>
           <NavBar />
           <Route
