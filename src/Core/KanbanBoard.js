@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import "../styles/App.css";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../styles/theme";
-import NavBar from "./NavBar";
 import Board from "react-trello";
 import * as API from "./API";
 
@@ -111,7 +110,6 @@ class KanbanBoard extends React.Component {
     ) : (
       <div>
         <ThemeProvider theme={theme}>
-          <NavBar />
           <Route
             path="/kanbanboard"
             render={(routerProps) => (
