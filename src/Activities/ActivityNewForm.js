@@ -5,14 +5,22 @@ import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save'
 import MenuItem from '@material-ui/core/MenuItem'
 
+import * as API from '../Core/API'
+
 class ActivityNewForm extends React.Component {
     state = {
+      opportunities: [],
       opportunity_id: null,
       name: '',
       date: '',
       notes: ''
     }
 
+    async componentDidMount () {
+      const opportunities = await API.fetchOpportunities()
+      this.setState({ opportunities: opportunities })
+    }
+    
     nextPath = (path) => {
       this.props.routerProps.history.push(path)
     }
@@ -57,7 +65,7 @@ class ActivityNewForm extends React.Component {
               helperText='Please select the related opportunity'
               required
             >
-              {this.props.opportunities.map(opp => (
+              {this.state.opportunities.map(opp => (
                 <MenuItem key={opp.id} value={opp.id}>
                   {opp.name}
                 </MenuItem>

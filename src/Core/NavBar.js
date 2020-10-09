@@ -15,6 +15,7 @@ class NavBar extends React.Component {
         <AppBar>
           <Tabs>
             <Link to='/' style={{ textDecoration: 'none', color: 'white' }}><Tab style={styles.tab} label='&nbsp;Sellwell&nbsp;' /></Link>
+            <Link to='/kanbanboard' style={{ textDecoration: 'none', color: 'white' }}><Tab style={styles.tab} label='&nbsp;Board&nbsp;' /></Link>
             <Link to='/accounts' style={{ textDecoration: 'none', color: 'white' }}><Tab style={styles.tab} label='&nbsp;Accounts&nbsp;' /></Link>
             <Link to='/contacts' style={{ textDecoration: 'none', color: 'white' }}><Tab style={styles.tab} label='&nbsp;Contacts&nbsp;' /></Link>
             <Link to='/opportunities' style={{ textDecoration: 'none', color: 'white' }}><Tab style={styles.tab} label='&nbsp;Opportunities&nbsp;' /></Link>
