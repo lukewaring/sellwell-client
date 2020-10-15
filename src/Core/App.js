@@ -19,46 +19,42 @@
 // export default App;
 
 // eslint-disable-next-line
-import React from 'react';
-import AuthenticatedApp from './AuthenticatedApp'
-import UnauthenticatedApp from './UnauthenticatedApp'
+import React from "react";
+import AuthenticatedApp from "./AuthenticatedApp";
+import UnauthenticatedApp from "./UnauthenticatedApp";
 
 async function bootstrapAppData() {
   function getToken() {
-    return window.localStorage.getItem("token")
+    return window.localStorage.getItem("token");
   }
-  
-  const token = await getToken()
 
-  return token
+  const token = await getToken();
+
+  return token;
 }
 
 class App extends React.Component {
   state = {
-    tokenInState: ""
-  }
-  
+    tokenInState: "",
+  };
+
   componentDidMount() {
-    this.setState({ tokenInState: localStorage.token })
+    this.setState({ tokenInState: localStorage.token });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.tokenInState !== prevState.tokenInState) {
-    this.setState({ tokenInState: localStorage.token })
+      this.setState({ tokenInState: localStorage.token });
     }
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     if (this.state.tokenInState) {
-      return (
-      <AuthenticatedApp />  
-    );
-  } else {
-    return (
-      <UnauthenticatedApp />
-    )
-  }
+      return <AuthenticatedApp />;
+    } else {
+      return <UnauthenticatedApp />;
+    }
   }
 }
 
