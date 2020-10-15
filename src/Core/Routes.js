@@ -33,7 +33,7 @@ const Routes = () => {
       <Route
         exact
         path="/"
-        render={(routerProps) => <Home routerProps={routerProps} />}
+        render={(routerProps) => <KanbanBoard routerProps={routerProps} />}
       />
       <Route
         path="/signup"

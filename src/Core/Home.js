@@ -1,47 +1,24 @@
-import React from "react";
-import "../styles/App.css";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "../styles/theme";
-import Button from "@material-ui/core/Button";
-import NavBar from "./NavBar";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-class KanbanBoard extends React.Component {
-  nextPath = (path) => {
-    this.props.routerProps.history.push(path);
-  };
+const Home = () => {
+  const name = useSelector(state => state.name);
+  const text = name ? (
+    <h1>{name} is currently logged in</h1>
+  ) : (
+    <h1>Nobody is logged in</h1>
+  );
+  return <div>{text}</div>;
+};
 
-  render() {
-    return (
-      <div className="App">
-        <ThemeProvider theme={theme}>
-          <NavBar />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => this.nextPath("/signup")}
-              style={{ margin: "1rem" }}
-            >
-              Signup
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => this.nextPath("/login")}
-              style={{ margin: "1rem" }}
-            >
-              Login
-            </Button>
-          </div>
-        </ThemeProvider>
-      </div>
-    );
-  }
-}
+// async function bootstrapAppData() {
+//   function getToken() {
+//     return window.localStorage.getItem(token)
+//   }
+  
+//   const token = await getToken()
 
-export default KanbanBoard;
+//   return token
+// }}
+
+export default Home;
